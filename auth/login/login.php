@@ -26,6 +26,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         echo json_encode(['status' => 'error', 'message' => 'Identifiants incorrects.']);
     }
+    if($user['role'] == 'admin'){
+        header("Location: ../../admin/admin_dashboard.php");
+    }else if($user['role'] == 'company'){
+        header("Location: ../../company/company_dashboard.php");
+    }else{
+        header("Location: ../../studant/studant_dashboard.php");
+    }
 
     $stmt->close();
     $conn->close();

@@ -17,11 +17,11 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
         setTimeout(() => {
             // Redirection selon le rôle
             if (result.role === 'admin') {
-                window.location.href = 'admin_dashboard.php';
+                window.location.href = '../../admin/admin_dashboard.php';
             } else if (result.role === 'company') {
-                window.location.href = 'company_dashboard.php';
+                window.location.href = '../../company/company_dashboard.php';
             } else {
-                window.location.href = 'student_dashboard.php';
+                window.location.href = '../../studant/student_dashboard.php';
             }
         }, 1000);
     }
