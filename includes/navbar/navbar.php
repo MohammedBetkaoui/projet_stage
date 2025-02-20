@@ -24,9 +24,7 @@ $role = $_SESSION['role'] ?? 'guest';
     </div>
     <ul>
         <li><a href="../../index.php">Accueil</a></li>
-        <li><a href="#">Services</a></li>
-        <li><a href="#">Blog</a></li>
-        <li><a href="#">Contact</a></li>
+        
 
         <?php if ($role === 'student'): ?>
             <li><a href="../../studant/student_dashboard.php">Espace Étudiant</a></li>

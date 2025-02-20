@@ -2,8 +2,21 @@
 session_start();
 
 if (isset($_SESSION['user_id'])) {
-    header('Location: /'.$_SESSION['role'].'_dashboard.php');
-    exit;
+    switch ($_SESSION['role']) {
+        case 'admin':
+            header('Location: ../../admin/admin_dashboard.php');
+            break;
+        case 'company':
+            header('Location: ../../company/company_dashboard.php');
+            break;
+        case 'student':
+            header('Location: ../../studant/student_dashboard.php');
+            break;
+        default:
+            // Déconnexion si le rôle est inconnu
+            header('Location: ../../auth/logout/logout.php');
+    }
+    exit();
 }
 
 require_once '../../includes/db/db.php';
@@ -57,9 +70,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
             echo json_encode([
                 'status' => 'success',
-                'redirect' => "{$role}_dashboard.php"
+                'redirect' => "/index.php"
             ]);
             exit;
+            
+           
         } else {
             array_push($errors, ['field' => 'global', 'message' => 'Erreur serveur']);
         }
