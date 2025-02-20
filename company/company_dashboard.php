@@ -1,12 +1,14 @@
 <?php
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 if ($_SESSION['role'] !== 'company') {
     header("Location: ../auth/login/login.php");
     exit;
 }
-?>
+require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/navbar/navbar.php';
 
-<?php include 'navbar.php'; ?>
+?>
 
 <div class="dashboard company">
     <h1>Bienvenue dans l'Espace Entreprise</h1>

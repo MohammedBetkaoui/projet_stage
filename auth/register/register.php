@@ -1,56 +1,80 @@
 <?php
 session_start();
-include_once('../../includes/db/db.php');
+
+if (isset($_SESSION['user_id'])) {
+    header('Location: /'.$_SESSION['role'].'_dashboard.php');
+    exit;
+}
+
+require_once '../../includes/db/db.php';
+
+$errors = [];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $username = trim($_POST['username']);
-    $email = trim($_POST['email']);
-    $password = trim($_POST['password']);
-    $role = trim($_POST['role']);
-    $full_name = trim($_POST['full_name']);
-    $phone = trim($_POST['phone']);
-    $address = trim($_POST['address']);
+    $inputs = array_map('trim', $_POST);
+    $username = htmlspecialchars($inputs['username']);
+    $email = filter_var($inputs['email'], FILTER_SANITIZE_EMAIL);
+    $password = $inputs['password'];
+    $role = $inputs['role'];
+    $full_name = htmlspecialchars($inputs['full_name'] ?? '');
+    $phone = preg_replace('/[^0-9+]/', '', $inputs['phone'] ?? '');
+    $address = htmlspecialchars($inputs['address'] ?? '');
 
-    // Validation des champs obligatoires
-    if (empty($username) || empty($email) || empty($password) || empty($role)) {
-        echo json_encode(['status' => 'error', 'message' => 'Veuillez remplir tous les champs obligatoires.']);
+    if (empty($username)) array_push($errors, ['field' => 'username', 'message' => 'Nom d\'utilisateur requis']);
+    if (!preg_match('/^[a-zA-Z0-9_]{3,20}$/', $username)) array_push($errors, ['field' => 'username', 'message' => 'Format invalide']);
+    
+    if (empty($email)) array_push($errors, ['field' => 'email', 'message' => 'Email requis']);
+    elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) array_push($errors, ['field' => 'email', 'message' => 'Email invalide']);
+    
+    if (empty($password)) array_push($errors, ['field' => 'password', 'message' => 'Mot de passe requis']);
+    elseif (strlen($password) < 8 || !preg_match('/[A-Z]/', $password) || !preg_match('/[0-9]/', $password)) {
+        array_push($errors, ['field' => 'password', 'message' => '8 caractères minimum avec majuscule et chiffre']);
+    }
+
+    if (empty($role) || !in_array($role, ['student', 'company'])) {
+        array_push($errors, ['field' => 'role', 'message' => 'Rôle invalide']);
+    }
+
+    if (empty($errors)) {
+        $stmt = $conn->prepare("SELECT id FROM users WHERE username = ? OR email = ?");
+        $stmt->bind_param("ss", $username, $email);
+        $stmt->execute();
+        if ($stmt->get_result()->num_rows > 0) {
+            array_push($errors, ['field' => 'email', 'message' => 'Identifiants déjà utilisés']);
+        }
+        $stmt->close();
+    }
+
+    if (empty($errors)) {
+        $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+        $stmt = $conn->prepare("INSERT INTO users (username, email, password, role, full_name, phone, address) VALUES (?, ?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("sssssss", $username, $email, $hashedPassword, $role, $full_name, $phone, $address);
+
+        if ($stmt->execute()) {
+            $_SESSION['user_id'] = $stmt->insert_id;
+            $_SESSION['username'] = $username;
+            $_SESSION['role'] = $role;
+            
+            echo json_encode([
+                'status' => 'success',
+                'redirect' => "{$role}_dashboard.php"
+            ]);
+            exit;
+        } else {
+            array_push($errors, ['field' => 'global', 'message' => 'Erreur serveur']);
+        }
+        $stmt->close();
+    }
+
+    if (!empty($errors)) {
+        echo json_encode([
+            'status' => 'error',
+            'message' => 'Veuillez corriger les erreurs',
+            'errors' => $errors
+        ]);
         exit;
     }
-
-    if (!preg_match("/^[a-zA-Z0-9_]{3,20}$/", $username)) {
-        echo json_encode(['status' => 'error', 'message' => 'Le nom d\'utilisateur doit contenir entre 3 et 20 caractères alphanumériques.']);
-        exit;
-    }
-
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        echo json_encode(['status' => 'error', 'message' => 'Adresse e-mail invalide.']);
-        exit;
-    }
-
-    if (strlen($password) < 8) {
-        echo json_encode(['status' => 'error', 'message' => 'Le mot de passe doit comporter au moins 8 caractères.']);
-        exit;
-    }
-
-    if (!in_array($role, ['student', 'company'])) {
-        echo json_encode(['status' => 'error', 'message' => 'Le rôle sélectionné n\'est pas valide.']);
-        exit;
-    }
-
-    $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
-
-    $stmt = $conn->prepare("INSERT INTO users (username, email, password, role, full_name, phone, address) VALUES (?, ?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("sssssss", $username, $email, $hashedPassword, $role, $full_name, $phone, $address);
-
-    if ($stmt->execute()) {
-        echo json_encode(['status' => 'success', 'message' => 'Inscription réussie.']);
-    } else {
-        echo json_encode(['status' => 'error', 'message' => 'Erreur lors de l\'inscription.']);
-    }
-
-    $stmt->close();
-    $conn->close();
 }
-include './register_form.php'
-?>
 
+include './register_form.php';
+?>

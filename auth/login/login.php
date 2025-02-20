@@ -1,5 +1,25 @@
 <?php
 session_start();
+
+// Redirection si l'utilisateur est déjà connecté
+if (isset($_SESSION['user_id'])) {
+    switch ($_SESSION['role']) {
+        case 'admin':
+            header('Location: ../../admin/admin_dashboard.php');
+            break;
+        case 'company':
+            header('Location: ../../company/company_dashboard.php');
+            break;
+        case 'student':
+            header('Location: ../../studant/student_dashboard.php');
+            break;
+        default:
+            // Déconnexion si le rôle est inconnu
+            header('Location: ../../auth/logout/logout.php');
+    }
+    exit();
+}
+
 include_once '../../includes/db/db.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -21,21 +41,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['username'] = $user['username'];
         $_SESSION['role'] = $user['role'];
-
-        echo json_encode(['status' => 'success', 'message' => 'Connexion réussie.', 'role' => $user['role']]);
+        
+        echo json_encode([
+            'status' => 'success', 
+            'message' => 'Connexion réussie.', 
+            'role' => $user['role']
+        ]);
     } else {
         echo json_encode(['status' => 'error', 'message' => 'Identifiants incorrects.']);
     }
-    if($user['role'] == 'admin'){
-        header("Location: ../../admin/admin_dashboard.php");
-    }else if($user['role'] == 'company'){
-        header("Location: ../../company/company_dashboard.php");
-    }else{
-        header("Location: ../../studant/studant_dashboard.php");
-    }
-
+    
     $stmt->close();
     $conn->close();
+    exit;
 }
-include './login_form.php'
+
+include './login_form.php';
 ?>

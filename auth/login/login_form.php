@@ -22,6 +22,7 @@
         <button type="submit">Se connecter</button>
         <p id="message"></p>
     </form>
+    <p>Pas encore inscrit? <a href="../register/register.php">Inscrivez-vous ici</a></p>
 </div>
 
 <script src="./login.js"></script>
