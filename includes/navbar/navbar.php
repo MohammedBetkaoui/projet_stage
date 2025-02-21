@@ -12,7 +12,7 @@ $role = $_SESSION['role'] ?? 'guest';
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Responsive Navbar</title>
+    <title>Stage</title>
     <link rel="stylesheet" href="/includes/navbar/navbar.css"> 
   </head>
   <body>
@@ -23,7 +23,8 @@ $role = $_SESSION['role'] ?? 'guest';
         <h1>LOGO</h1>
     </div>
     <ul>
-        <li><a href="../../index.php">Accueil</a></li>
+        <li><a href="/home/index.php">Accueil</a></li>
+        <li><a href="/home/propos/propos.php">À propos</a></li>
         
 
         <?php if ($role === 'student'): ?>
