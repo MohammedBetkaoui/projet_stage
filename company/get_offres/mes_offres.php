@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once '../../includes/db/db.php'; // Inclure la connexion à la base de données
-require_once '../../get_data/offre/get_offres.php'; // Inclure la fonction pour récupérer les offres
+require_once '../functions/offres/get_offres.php'; // Inclure la fonction pour récupérer les offres
 // Rediriger si l'utilisateur n'est pas connecté ou n'est pas une entreprise
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'company') {
     header('Location: ../auth/login/login.php');
@@ -98,9 +98,10 @@ try {
                             <span><strong>Date de début:</strong> <?php echo htmlspecialchars($offer['start_date']); ?></span>
                             <span><strong>Date de fin:</strong> <?php echo htmlspecialchars($offer['end_date']); ?></span>
                             <span><strong>Gratification:</strong> <?php echo $offer['compensation'] ? $offer['compensation'] . ' Dz/mois' : 'Non spécifiée'; ?></span>
+                            <span><strong>Dernier Délai:</strong> <?php echo $offer['deadline']  ?></span>
                         </div>
                         <div class="actions">
-                            <a href="modifier_offre.php?id=<?php echo $offer['id']; ?>" class="btn edit">Modifier</a>
+                            <a href="../offre/edit_offre.php?id=<?php echo $offer['id']; ?>" class="btn edit">Modifier</a>
                             <a href="#" class="btn delete" onclick="confirmDelete(<?php echo $offer['id']; ?>)">Supprimer</a>
                         </div>
                     </div>

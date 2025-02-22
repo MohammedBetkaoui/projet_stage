@@ -8,7 +8,7 @@ if ($_SESSION['role'] !== 'company') {
 }
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/db/db.php'; // Inclure la connexion à la base de données
-require_once $_SERVER['DOCUMENT_ROOT'] . '/get_data/offre/get_offres.php'; // Inclure la fonction pour récupérer les offres
+require_once $_SERVER['DOCUMENT_ROOT'] . '/company/functions/offres/get_offres.php'; // Inclure la fonction pour récupérer les offres
 
 // Récupérer les offres de l'entreprise connectée
 try {

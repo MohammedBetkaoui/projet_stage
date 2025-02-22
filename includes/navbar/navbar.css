@@ -1,21 +1,7 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
-
-/* Reset et styles de base */
-* {
-  box-sizing: border-box;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  font-family: "Poppins", sans-serif;
-  line-height: 1.6;
-}
-
-body.no-scroll {
-  overflow: hidden;
+/* Styles de base pour les icônes */
+.bx {
+  font-size: 1.2rem;
+  margin-right: 0.5rem;
 }
 
 /* Navigation principale */
@@ -40,30 +26,32 @@ nav {
 }
 
 /* Menu desktop */
-nav ul {
+.desktop-menu {
   display: flex;
   list-style: none;
   align-items: center;
-  gap: 2rem;
+  gap: 1.5rem;
 }
 
-nav ul li a {
+.desktop-menu li a {
   text-decoration: none;
   color: #333;
   font-weight: 500;
   padding: 0.5rem 1rem;
   border-radius: 5px;
   transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
 }
 
-nav ul li a:hover {
+.desktop-menu li a:hover {
   background-color: #f5f5f5;
   color: #2c64fc;
 }
 
 /* Hamburger (mobile) */
 .hamburger {
-  display: none;
+  display: none; /* Caché par défaut */
   cursor: pointer;
   z-index: 1001;
 }
@@ -115,25 +103,27 @@ nav ul li a:hover {
 .menubar ul li a {
   font-size: 1.1rem;
   padding: 0.75rem 1.5rem;
+  display: flex;
+  align-items: center;
 }
 
 /* Responsive */
 @media screen and (max-width: 790px) {
-  nav ul {
-    display: none;
+  .desktop-menu {
+      display: none; /* Masquer le menu desktop */
   }
 
   .hamburger {
-    display: block;
+      display: block; /* Afficher le hamburger */
   }
 
   .menubar {
-    display: block;
+      display: block; /* Afficher le menu mobile */
   }
 }
 
 @media screen and (min-width: 791px) {
   .menubar {
-    display: none !important;
+      display: none !important; /* Masquer le menu mobile */
   }
 }

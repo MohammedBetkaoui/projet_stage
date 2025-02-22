@@ -2,7 +2,7 @@ const mobileNav = document.querySelector(".hamburger");
 const navbar = document.querySelector(".menubar");
 const body = document.querySelector("body");
 
-const toggleNav = () => {
+const toggleMenu = () => {
     navbar.classList.toggle("active");
     mobileNav.classList.toggle("hamburger-active");
     body.classList.toggle("no-scroll");
@@ -23,5 +23,5 @@ document.querySelectorAll(".menubar a").forEach(link => {
         navbar.classList.remove("active");
         mobileNav.classList.remove("hamburger-active");
         body.classList.remove("no-scroll");
-    })
+    });
 });

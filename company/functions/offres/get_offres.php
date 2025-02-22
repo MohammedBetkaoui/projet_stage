@@ -5,7 +5,7 @@ function getOffers($conn, $company_id = null) {
         if ($company_id) {
             // Récupérer les offres d'une entreprise spécifique
             $stmt = $conn->prepare("
-                SELECT o.id, o.title, o.description, o.sector, o.location, o.start_date, o.end_date, o.compensation, o.created_at
+                SELECT o.id, o.title, o.description, o.sector,o.deadline, o.location, o.start_date, o.end_date, o.compensation, o.created_at
                 FROM offers o
                 WHERE o.company_id = ?
                 ORDER BY o.created_at DESC

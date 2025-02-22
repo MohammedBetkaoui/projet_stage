@@ -1,6 +1,8 @@
 <?php
 session_start();
+require '../../includes/db/db.php'; // Assurez-vous que ce fichier configure une connexion mysqli
 
+// Redirection si l'utilisateur est déjà connecté
 if (isset($_SESSION['user_id'])) {
     switch ($_SESSION['role']) {
         case 'admin':
@@ -18,76 +20,71 @@ if (isset($_SESSION['user_id'])) {
     }
     exit();
 }
+$skills = [];
+$errors = []; // Tableau pour stocker les erreurs
 
-require_once '../../includes/db/db.php';
-
-$errors = [];
+try {
+    $stmt = $conn->prepare("SELECT * FROM skills");
+    $stmt->execute();
+    $result = $stmt->get_result();
+    while ($row = $result->fetch_assoc()) {
+        $skills[] = $row;
+    }
+} catch (Exception $e) {
+    $errors[] = "Erreur lors de la récupération des compétences: " . $e->getMessage();
+}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $inputs = array_map('trim', $_POST);
-    $username = htmlspecialchars($inputs['username']);
-    $email = filter_var($inputs['email'], FILTER_SANITIZE_EMAIL);
-    $password = $inputs['password'];
-    $role = $inputs['role'];
-    $full_name = htmlspecialchars($inputs['full_name'] ?? '');
-    $phone = preg_replace('/[^0-9+]/', '', $inputs['phone'] ?? '');
-    $address = htmlspecialchars($inputs['address'] ?? '');
+    $username = trim($_POST['username']);
+    $password = $_POST['password'];
+    $email = trim($_POST['email']);
+    $role = $_POST['role'];
+    $full_name = trim($_POST['full_name']);
+    $phone = trim($_POST['phone']);
+    $address = trim($_POST['address']);
 
-    if (empty($username)) array_push($errors, ['field' => 'username', 'message' => 'Nom d\'utilisateur requis']);
-    if (!preg_match('/^[a-zA-Z0-9_]{3,20}$/', $username)) array_push($errors, ['field' => 'username', 'message' => 'Format invalide']);
-    
-    if (empty($email)) array_push($errors, ['field' => 'email', 'message' => 'Email requis']);
-    elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) array_push($errors, ['field' => 'email', 'message' => 'Email invalide']);
-    
-    if (empty($password)) array_push($errors, ['field' => 'password', 'message' => 'Mot de passe requis']);
-    elseif (strlen($password) < 8 || !preg_match('/[A-Z]/', $password) || !preg_match('/[0-9]/', $password)) {
-        array_push($errors, ['field' => 'password', 'message' => '8 caractères minimum avec majuscule et chiffre']);
+    // Validation des champs
+    if (empty($username)) {
+        $errors[] = "Le nom d'utilisateur est requis.";
+    }
+    if (empty($password)) {
+        $errors[] = "Le mot de passe est requis.";
+    }
+    if (empty($email)) {
+        $errors[] = "L'email est requis.";
+    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $errors[] = "L'email n'est pas valide.";
+    }
+    if (empty($role)) {
+        $errors[] = "Le rôle est requis.";
+    }
+    if (empty($full_name)) {
+        $errors[] = "Le nom complet est requis.";
     }
 
-    if (empty($role) || !in_array($role, ['student', 'company'])) {
-        array_push($errors, ['field' => 'role', 'message' => 'Rôle invalide']);
-    }
-
+    // Si aucune erreur, procéder à l'inscription
     if (empty($errors)) {
-        $stmt = $conn->prepare("SELECT id FROM users WHERE username = ? OR email = ?");
-        $stmt->bind_param("ss", $username, $email);
+        $password_hash = password_hash($password, PASSWORD_BCRYPT);
+
+        // Insertion des données dans la table `users`
+        $stmt = $conn->prepare("INSERT INTO users (username, password, email, role, full_name, phone, address) VALUES (?, ?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("sssssss", $username, $password_hash, $email, $role, $full_name, $phone, $address);
         $stmt->execute();
-        if ($stmt->get_result()->num_rows > 0) {
-            array_push($errors, ['field' => 'email', 'message' => 'Identifiants déjà utilisés']);
+
+        $user_id = $stmt->insert_id;
+
+        // Si l'utilisateur est un étudiant, on enregistre ses compétences
+        if ($role === 'student' && isset($_POST['skills'])) {
+            foreach ($_POST['skills'] as $skill_id) {
+                $stmt = $conn->prepare("INSERT INTO user_skills (user_id, skill_id) VALUES (?, ?)");
+                $stmt->bind_param("ii", $user_id, $skill_id);
+                $stmt->execute();
+            }
         }
-        $stmt->close();
-    }
 
-    if (empty($errors)) {
-        $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
-        $stmt = $conn->prepare("INSERT INTO users (username, email, password, role, full_name, phone, address) VALUES (?, ?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("sssssss", $username, $email, $hashedPassword, $role, $full_name, $phone, $address);
-
-        if ($stmt->execute()) {
-            $_SESSION['user_id'] = $stmt->insert_id;
-            $_SESSION['username'] = $username;
-            $_SESSION['role'] = $role;
-            
-            echo json_encode([
-                'status' => 'success',
-                'redirect' => "/index.php"
-            ]);
-            exit;
-            
-           
-        } else {
-            array_push($errors, ['field' => 'global', 'message' => 'Erreur serveur']);
-        }
-        $stmt->close();
-    }
-
-    if (!empty($errors)) {
-        echo json_encode([
-            'status' => 'error',
-            'message' => 'Veuillez corriger les erreurs',
-            'errors' => $errors
-        ]);
-        exit;
+        $_SESSION['message'] = 'Inscription réussie!';
+        header('Location: ../../auth/login/login.php');
+        exit();
     }
 }
 

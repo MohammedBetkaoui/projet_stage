@@ -31,19 +31,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $location = trim($_POST['location']);
     $start_date = $_POST['start_date'];
     $end_date = $_POST['end_date'];
+    $deadline = $_POST['deadline']; // Nouveau champ
     $compensation = $_POST['compensation'];
     $selected_skills = $_POST['skills'] ?? [];
 
-    if (empty($title) || empty($description) || empty($sector) || empty($location) || empty($start_date) || empty($end_date)) {
+    // Validation des champs
+    if (empty($title) || empty($description) || empty($sector) || empty($location) || empty($start_date) || empty($end_date) || empty($deadline)) {
         $error = 'Tous les champs obligatoires doivent être remplis';
     } elseif ($end_date <= $start_date) {
         $error = 'La date de fin doit être postérieure à la date de début';
+    } elseif ($deadline <= date('Y-m-d')) {
+        $error = 'La date limite de candidature doit être postérieure à aujourd\'hui';
     } else {
         try {
-            // Insérer l'offre
-            $stmt = $conn->prepare("INSERT INTO offers (company_id, title, description, sector, location, start_date, end_date, compensation, created_at) 
-                                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, NOW())");
-            $stmt->bind_param("issssssi", $_SESSION['user_id'], $title, $description, $sector, $location, $start_date, $end_date, $compensation);
+            // Insérer l'offre avec la nouvelle colonne `deadline`
+            $stmt = $conn->prepare("INSERT INTO offers (company_id, title, description, sector, location, start_date, end_date, deadline, compensation, created_at) 
+                                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())");
+            $stmt->bind_param("isssssssi", $_SESSION['user_id'], $title, $description, $sector, $location, $start_date, $end_date, $deadline, $compensation);
             $stmt->execute();
             $offer_id = $stmt->insert_id;
 
@@ -54,13 +58,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $stmt->bind_param("ii", $offer_id, $skill_id);
                     $stmt->execute();
                 }
-               
+                $success = "Offre publiée avec succès!";
+                $_SESSION['success_message'] = $success;
+                header('Location: ../get_offres/mes_offres.php');
+                exit();
             }
-            $success = "Offre publiée avec succès!";
-            $_SESSION['success_message'] = $success;
-           header('Location: ../get_offres/mes_offres.php');
-              exit();
-           
         } catch (Exception $e) {
             $error = "Erreur lors de la publication: " . $e->getMessage();
         }
