@@ -1,10 +1,23 @@
+/* Style général */
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f5f5f5;
+    font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
 }
 
+.main-content {
+    margin-left: 250px; /* Ajuster selon la largeur de la sidebar */
+    padding: 20px;
+    transition: margin-left 0.3s ease;
+}
+
+.sidebar.close ~ .main-content {
+    margin-left: 88px; /* Ajuster si la sidebar est réduite */
+}
+
+/* Conteneur du formulaire */
 .form-container {
     max-width: 800px;
     margin: 2rem auto;
@@ -20,12 +33,7 @@ h2 {
     margin-bottom: 2rem;
 }
 
-.alert {
-    padding: 1rem;
-    margin-bottom: 1.5rem;
-    border-radius: 5px;
-    text-align: center;
-}
+
 
 .alert.error {
     background-color: #f8d7da;
@@ -33,12 +41,20 @@ h2 {
     border: 1px solid #f5c6cb;
 }
 
-.alert.success {
-    background-color: #d4edda;
-    color: #155724;
-    border: 1px solid #c3e6cb;
+
+/* Formulaire en étapes */
+.form-step {
+    display: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
+.form-step.active {
+    display: block;
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Groupes de formulaire */
 .form-group {
     margin-bottom: 1.5rem;
 }
@@ -59,8 +75,23 @@ h2 {
     border: 1px solid #bdc3c7;
     border-radius: 4px;
     font-size: 1rem;
+    transition: border-color 0.3s ease;
 }
 
+.form-group input[type="text"]:focus,
+.form-group input[type="date"]:focus,
+.form-group input[type="number"]:focus,
+.form-group textarea:focus {
+    border-color: #3498db;
+    outline: none;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 150px;
+}
+
+/* Ligne de formulaire */
 .form-row {
     display: flex;
     gap: 1rem;
@@ -70,6 +101,7 @@ h2 {
     flex: 1;
 }
 
+/* Compétences */
 .skills-container {
     display: flex;
     flex-wrap: wrap;
@@ -94,23 +126,40 @@ h2 {
     margin-right: 0.5rem;
 }
 
-.submit-btn {
-    width: 100%;
-    padding: 1rem;
-    background-color: #3498db;
-    color: white;
+/* Boutons de navigation */
+.next-btn, .prev-btn, .submit-btn {
+    padding: 0.8rem 1.5rem;
     border: none;
     border-radius: 5px;
-    font-size: 1.1rem;
+    font-size: 1rem;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
-.submit-btn:hover {
+.next-btn, .submit-btn {
+    background-color: #3498db;
+    color: white;
+}
+
+.next-btn:hover, .submit-btn:hover {
     background-color: #2980b9;
 }
 
+.prev-btn {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.prev-btn:hover {
+    background-color: #c0392b;
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
+    .main-content {
+        margin-left: 0;
+    }
+
     .form-container {
         margin: 1rem;
         padding: 1rem;

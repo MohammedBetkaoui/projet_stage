@@ -2,7 +2,6 @@
 session_start();
 require_once '../../includes/db/db.php'; // Inclure la connexion à la base de données
 require_once '../../get_data/offre/get_offres.php'; // Inclure la fonction pour récupérer les offres
-
 // Rediriger si l'utilisateur n'est pas connecté ou n'est pas une entreprise
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'company') {
     header('Location: ../auth/login/login.php');
@@ -31,6 +30,8 @@ try {
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!-- SweetAlert2 pour les alertes modernes -->
 </head>
+
+
 <body>
     <!-- Sidebar -->
     <?php include '../../includes/sidebar/sidebar.php'; ?>
@@ -38,13 +39,22 @@ try {
     <!-- Contenu principal -->
     <section class="main-content">
         <h1>Mes offres publiées</h1>
-
+        <?php if (isset($_SESSION['success_message'])): ?>
+    <div class="alert success">
+        <i class='bx bx-check-circle'></i>
+        <span><?php echo $_SESSION['success_message']; ?></span>
+        <button class="close-btn" onclick="this.parentElement.remove()">&times;</button>
+    </div>
+    <?php unset($_SESSION['success_message']); ?>
+<?php endif; ?>
+             
         <?php if ($error): ?>
             <div class="alert error"><?php echo $error; ?></div>
         <?php elseif (empty($offers)): ?>
             <div class="alert info">Vous n'avez publié aucune offre pour le moment.</div>
         <?php else: ?>
             <!-- Statistiques rapides -->
+            
             <div class="quick-stats">
                 <div class="stat-card">
                     <i class='bx bx-file'></i>

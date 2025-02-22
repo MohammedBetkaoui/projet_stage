@@ -25,3 +25,39 @@ document.getElementById('offerForm').addEventListener('submit', function(e) {
         alert('Erreurs:\n' + errorMessages.join('\n'));
     }
 });
+
+// Gestion des étapes du formulaire
+const formSteps = document.querySelectorAll('.form-step');
+const nextButtons = document.querySelectorAll('.next-btn');
+const prevButtons = document.querySelectorAll('.prev-btn');
+let currentStep = 0;
+
+// Afficher l'étape actuelle
+function showStep(stepIndex) {
+    formSteps.forEach((step, index) => {
+        step.classList.toggle('active', index === stepIndex);
+    });
+}
+
+// Bouton Suivant
+nextButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        if (currentStep < formSteps.length - 1) {
+            currentStep++;
+            showStep(currentStep);
+        }
+    });
+});
+
+// Bouton Précédent
+prevButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        if (currentStep > 0) {
+            currentStep--;
+            showStep(currentStep);
+        }
+    });
+});
+
+// Afficher la première étape au chargement
+showStep(currentStep);
