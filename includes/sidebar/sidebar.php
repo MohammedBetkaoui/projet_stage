@@ -66,9 +66,15 @@ $auth = $_SESSION['user_id'];
                                 <span class="text nav-text">Mes offres</span>
                             </a>
                         </li>
+                        <li class="nav-link">
+                            <a href="/company/condidature/condidature.php">
+                                <i class='bx bx-file icon'></i>
+                                <span class="text nav-text">Mes candidatures</span>
+                            </a>
+                        </li>
                     <?php elseif ($role === 'student'): ?>
                         <li class="nav-link">
-                            <a href="/student/mes_candidatures.php">
+                            <a href="#">
                                 <i class='bx bx-file icon'></i>
                                 <span class="text nav-text">Mes candidatures</span>
                             </a>

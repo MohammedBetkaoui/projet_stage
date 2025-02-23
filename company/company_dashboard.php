@@ -72,7 +72,7 @@ try {
                         <a href="../../company/get_offres/mes_offres.php" class="btn btn-secondary">
                             <i class='bx bx-list-ul'></i> Voir mes offres
                         </a>
-                        <a href="/notifications.php" class="btn btn-tertiary">
+                        <a href="#" class="btn btn-tertiary">
                             <i class='bx bx-bell'></i> Voir les notifications
                         </a>
                     </div>

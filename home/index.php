@@ -7,10 +7,20 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/db/db.php'; // Inclure la co
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/navbar/navbar.php'; // Inclure la navbar
 require_once $_SERVER['DOCUMENT_ROOT'] . '/company/functions/offres/get_offres.php'; // Inclure la fonction pour récupérer les offres
 
-// Récupérer les offres depuis la base de données
+// Récupérer les offres disponibles (non dépassées)
 $offers = [];
 try {
-    $offers = getOffers($conn); // Récupérer toutes les offres
+    // Récupérer uniquement les offres dont la date limite n'est pas passée
+    $stmt = $conn->prepare("
+        SELECT o.id, o.title, o.description, o.sector, o.location, o.start_date, o.end_date, o.deadline, o.compensation, c.full_name AS company_name
+        FROM offers o
+        JOIN users c ON o.company_id = c.id
+        WHERE o.deadline >= CURDATE() -- Filtrer les offres non dépassées
+        ORDER BY o.created_at DESC
+    ");
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $offers = $result->fetch_all(MYSQLI_ASSOC);
 } catch (Exception $e) {
     $error = $e->getMessage();
 }
@@ -28,7 +38,7 @@ try {
 
 <body>
     <!-- Header -->
-   <?php include '../includes/header.php'; ?>
+    <?php include '../includes/header.php'; ?>
 
     <!-- Section des offres -->
     <section class="offers-section">
@@ -45,9 +55,11 @@ try {
                             <span><strong>Lieu:</strong> <?php echo htmlspecialchars($offer['location']); ?></span>
                             <span><strong>Date de début:</strong> <?php echo htmlspecialchars($offer['start_date']); ?></span>
                             <span><strong>Date de fin:</strong> <?php echo htmlspecialchars($offer['end_date']); ?></span>
+                            <span><strong>Dernier délai:</strong> <?php echo htmlspecialchars($offer['deadline']); ?></span>
                             <span><strong>Gratification:</strong> <?php echo $offer['compensation'] ? $offer['compensation'] . ' Dz/mois' : 'Non spécifiée'; ?></span>
                         </div>
-                        <a href="/apply.php?id=<?php echo $offer['id']; ?>" class="btn">Postuler</a>
+                        <a href="/studant/apply.php?id=<?php echo $offer['id']; ?>" class="btn">Postuler</a>
+                    
                     </div>
                 <?php endforeach; ?>
             <?php else: ?>
@@ -56,9 +68,7 @@ try {
         </div>
     </section>
 
-    
-
     <!-- Footer -->
-   <?php include '../includes/footer.php'; ?>
+    <?php include '../includes/footer.php'; ?>
 </body>
 </html>
