@@ -65,7 +65,9 @@
                 <button type="submit">S'inscrire</button>
             </div>
         </form>
-    </div>
+        <p>test? <a href="../login/login.php">connecte-vous ici</a></p>
+        </div>
+    
     <script src="./register.js"></script>
 </body>
 </html>

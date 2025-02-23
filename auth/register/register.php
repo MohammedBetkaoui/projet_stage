@@ -35,7 +35,7 @@ try {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $username = $_POST['username'];
+    $username = trim($_POST['username']);
     $password = $_POST['password'];
     $email = trim($_POST['email']);
     $role = $_POST['role'];
@@ -61,9 +61,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (empty($full_name)) {
         $errors[] = "Le nom complet est requis.";
     }
-
+    if($role == 'admin') {
+            $errors[]="Le rôle est requis 2.";
+    }
+    
+   
+    
     // Si aucune erreur, procéder à l'inscription
-    if (empty($errors)) {
+    if (empty($errors) && ($role == 'company' || $role == 'student')) {
         $password_hash = password_hash($password, PASSWORD_BCRYPT);
 
         // Insertion des données dans la table `users`

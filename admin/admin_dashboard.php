@@ -2,11 +2,11 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-if ($_SESSION['role'] !== 'student') {
+if ($_SESSION['role'] !== 'admin') {
     header("Location: ../auth/login/login.php");
     exit;
 }
-require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/navbar/navbar.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/nsidebar/sidebar.php';
 ?>
 
 <?php include 'navbar.php'; ?>
