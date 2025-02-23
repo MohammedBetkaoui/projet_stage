@@ -1,6 +1,6 @@
 <?php
 session_start();
-require '../../includes/db/db.php'; // Assurez-vous que ce fichier configure une connexion mysqli
+require '../../includes/db/db.php'; 
 
 // Redirection si l'utilisateur est déjà connecté
 if (isset($_SESSION['user_id'])) {
@@ -35,7 +35,7 @@ try {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $username = trim($_POST['username']);
+    $username = $_POST['username'];
     $password = $_POST['password'];
     $email = trim($_POST['email']);
     $role = $_POST['role'];
@@ -81,6 +81,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $stmt->execute();
             }
         }
+             
+       
+
 
         $_SESSION['message'] = 'Inscription réussie!';
         header('Location: ../../auth/login/login.php');
