@@ -71,8 +71,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } catch (Exception $e) {
             $error = "Erreur lors de la soumission de la candidature : " . $e->getMessage();
         }
-        header('Location: /home/index.php');
+       
     }
+   
 }
 ?>
 

@@ -10,8 +10,9 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #ffffff;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(135deg, #2c3e50, #3498db);
+  color: #fff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   position: relative;
   z-index: 1000;
 }
@@ -19,10 +20,8 @@ nav {
 /* Logo */
 .logo h1 {
   font-size: 1.5rem;
-  background: linear-gradient(to right, #b927fc 0%, #2c64fc 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #fff;
+  font-weight: bold;
 }
 
 /* Menu desktop */
@@ -35,7 +34,7 @@ nav {
 
 .desktop-menu li a {
   text-decoration: none;
-  color: #333;
+  color: #fff;
   font-weight: 500;
   padding: 0.5rem 1rem;
   border-radius: 5px;
@@ -45,8 +44,7 @@ nav {
 }
 
 .desktop-menu li a:hover {
-  background-color: #f5f5f5;
-  color: #2c64fc;
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 /* Hamburger (mobile) */
@@ -58,15 +56,15 @@ nav {
 
 .hamburger .line {
   width: 25px;
-  height: 2px;
-  background-color: #333;
+  height: 3px;
+  background-color: #fff;
   margin: 5px 0;
   transition: all 0.3s ease;
 }
 
 /* État actif du hamburger */
 .hamburger-active .line:nth-child(1) {
-  transform: translateY(7px) rotate(45deg);
+  transform: translateY(8px) rotate(45deg);
 }
 
 .hamburger-active .line:nth-child(2) {
@@ -74,7 +72,7 @@ nav {
 }
 
 .hamburger-active .line:nth-child(3) {
-  transform: translateY(-7px) rotate(-45deg);
+  transform: translateY(-8px) rotate(-45deg);
 }
 
 /* Menu mobile */
@@ -85,7 +83,7 @@ nav {
   width: 70%;
   height: 100vh;
   padding: 6rem 2rem;
-  background: #ffffff;
+  background: #2c3e50;
   box-shadow: 10px 0 30px rgba(0, 0, 0, 0.1);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 999;
@@ -96,15 +94,40 @@ nav {
 }
 
 .menubar ul {
+  list-style: none;
+  display: flex;
   flex-direction: column;
   gap: 1.5rem;
 }
 
 .menubar ul li a {
+  color: #fff;
   font-size: 1.1rem;
   padding: 0.75rem 1.5rem;
   display: flex;
   align-items: center;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.menubar ul li a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Overlay pour mobile */
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 998;
+}
+
+.overlay.active {
+  display: block;
 }
 
 /* Responsive */

@@ -18,13 +18,14 @@ $role = $_SESSION['role'] ?? 'guest';
 <body>
     <nav>
         <div class="logo">
-            <h1>LOGO</h1>
+            <h1>StageFinder</h1>
         </div>
 
         <!-- Menu desktop -->
         <ul class="desktop-menu">
             <li><a href="/home/index.php"><i class='bx bx-home'></i> Accueil</a></li>
             <li><a href="/home/propos/propos.php"><i class='bx bx-info-circle'></i> À propos</a></li>
+            <li><a href="/home/offres.php"><i class='bx bx-info-circle'></i> Offres</a></li>
 
             <?php if ($role === 'student'): ?>
                 <li><a href="../../studant/student_dashboard.php"><i class='bx bx-user'></i> Espace Étudiant</a></li>
@@ -43,9 +44,9 @@ $role = $_SESSION['role'] ?? 'guest';
 
         <!-- Bouton hamburger pour mobile -->
         <div class="hamburger" onclick="toggleMenu()">
-            <span class="line">-</span>
-            <span class="line">-</span>
-            <span class="line">-</span>
+            <span class="line">|</span>
+            <span class="line">|</span>
+            <span class="line">|</span>
         </div>
 
         <!-- Menu mobile -->
@@ -53,6 +54,7 @@ $role = $_SESSION['role'] ?? 'guest';
             <ul>
                 <li><a href="/home/index.php"><i class='bx bx-home'></i> Accueil</a></li>
                 <li><a href="/home/propos/propos.php"><i class='bx bx-info-circle'></i> À propos</a></li>
+                <li><a href="/home/offres.php"><i class='bx bx-info-circle'></i> Offres</a></li>
 
                 <?php if ($role === 'student'): ?>
                     <li><a href="../../studant/student_dashboard.php"><i class='bx bx-user'></i> Espace Étudiant</a></li>
@@ -69,6 +71,9 @@ $role = $_SESSION['role'] ?? 'guest';
                 <?php endif; ?>
             </ul>
         </div>
+
+        <!-- Overlay pour mobile -->
+        <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
     </nav>
 
     <script src="/includes/navbar/navbar.js"></script> <!-- Script pour le toggle -->
