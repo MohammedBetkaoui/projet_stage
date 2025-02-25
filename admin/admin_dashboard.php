@@ -6,14 +6,14 @@ if ($_SESSION['role'] !== 'admin') {
     header("Location: ../auth/login/login.php");
     exit;
 }
-require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/nsidebar/sidebar.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/sidebar/sidebar.php';
 ?>
 
-<?php include 'navbar.php'; ?>
+<link rel="stylesheet" href="/assets/css/dashboard.css">
 
-<div class="dashboard admin">
-    <h1>Panneau d'administration</h1>
-    <p>Gérez les utilisateurs, les entreprises, et les étudiants depuis cet espace sécurisé.</p>
-</div>
+<div class="welcome-section">
+                    <h1>Bienvenue, <?php echo htmlspecialchars($_SESSION['username']); ?> !</h1>
+                    <p>Gérez vos offres de stage et interagissez avec les étudiants.</p>
+                </div>
 
 <link rel="stylesheet" href="../assets//css/dashboard.css">

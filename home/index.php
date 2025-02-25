@@ -76,7 +76,7 @@ try {
             <?php endif; ?>
         </div>
         <br><br>
-        <a href="/offres.php" class="btn btn-see-more">Voir toutes les offres</a>
+        <a href="./offres.php" class="btn btn-see-more">Voir toutes les offres</a>
     </section>
 
     <!-- Section "Pourquoi nous choisir ?" -->
