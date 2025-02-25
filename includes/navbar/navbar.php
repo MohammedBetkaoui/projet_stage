@@ -28,7 +28,7 @@ $role = $_SESSION['role'] ?? 'guest';
             <li><a href="/home/offres.php"><i class='bx bx-info-circle'></i> Offres</a></li>
 
             <?php if ($role === 'student'): ?>
-                <li><a href="../../studant/student_dashboard.php"><i class='bx bx-user'></i> Espace Étudiant</a></li>
+                <li><a href="../../studant/home_dashboard/student_dashboard.php"><i class='bx bx-user'></i> Espace Étudiant</a></li>
             <?php elseif ($role === 'company'): ?>
                 <li><a href="../../company/company_dashboard.php"><i class='bx bx-briefcase'></i> Espace Entreprise</a></li>
             <?php elseif ($role === 'admin'): ?>
@@ -57,7 +57,7 @@ $role = $_SESSION['role'] ?? 'guest';
                 <li><a href="/home/offres.php"><i class='bx bx-info-circle'></i> Offres</a></li>
 
                 <?php if ($role === 'student'): ?>
-                    <li><a href="../../studant/student_dashboard.php"><i class='bx bx-user'></i> Espace Étudiant</a></li>
+                    <li><a href="../../studant/home_dashboard/student_dashboard.php"><i class='bx bx-user'></i> Espace Étudiant</a></li>
                 <?php elseif ($role === 'company'): ?>
                     <li><a href="../../company/company_dashboard.php"><i class='bx bx-briefcase'></i> Espace Entreprise</a></li>
                 <?php elseif ($role === 'admin'): ?>

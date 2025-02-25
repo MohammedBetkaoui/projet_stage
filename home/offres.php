@@ -38,7 +38,7 @@ try {
 
 <body>
     <!-- Header -->
-    <?php include '../includes/header.php'; ?>
+    <?php include '../includes/header/header.php'; ?>
 
     <!-- Section des offres -->
     <section class="offers-section">

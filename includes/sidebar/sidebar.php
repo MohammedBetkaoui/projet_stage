@@ -80,7 +80,7 @@ $auth = $_SESSION['user_id'];
                             </a>
                         </li>
                         <li class="nav-link">
-                            <a href="/student/offres_disponibles.php">
+                            <a href="/home/offres.php">
                                 <i class='bx bx-briefcase icon'></i>
                                 <span class="text nav-text">Offres disponibles</span>
                             </a>

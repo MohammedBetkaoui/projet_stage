@@ -11,7 +11,7 @@ if (isset($_SESSION['user_id'])) {
             header('Location: ../../company/company_dashboard.php');
             break;
         case 'student':
-            header('Location: ../../studant/student_dashboard.php');
+            header('Location: ../../studant/home_dashboard/student_dashboard.php');
             break;
         default:
             // Déconnexion si le rôle est inconnu
