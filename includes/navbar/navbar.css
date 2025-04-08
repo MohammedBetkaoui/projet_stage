@@ -1,0 +1,206 @@
+/* Styles de base pour les icônes */
+.bx {
+  font-size: 1.2rem;
+  margin-right: 0.5rem;
+}
+
+/* Navigation principale */
+nav {
+  padding: 1rem 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(135deg, #2c3e50, #3498db);
+  color: #fff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  position: relative;
+  z-index: 1000;
+}
+
+/* Logo */
+.logo h1 {
+  font-size: 1.5rem;
+  color: #fff;
+  font-weight: bold;
+}
+
+/* Menu desktop */
+.desktop-menu {
+  display: flex;
+  list-style: none;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.desktop-menu li a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+}
+
+.desktop-menu li a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Hamburger (mobile) */
+.hamburger {
+  display: none; /* Caché par défaut */
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.hamburger .line {
+  width: 25px;
+  height: 3px;
+  background-color: #fff;
+  margin: 5px 0;
+  transition: all 0.3s ease;
+}
+
+/* État actif du hamburger */
+.hamburger-active .line:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.hamburger-active .line:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger-active .line:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Menu mobile */
+.menubar {
+  position: fixed;
+  top: 0;
+  left: -100%;
+  width: 70%;
+  height: 100vh;
+  padding: 6rem 2rem;
+  background: #2c3e50;
+  box-shadow: 10px 0 30px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 999;
+}
+
+.menubar.active {
+  left: 0;
+}
+
+.menubar ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.menubar ul li a {
+  color: #fff;
+  font-size: 1.1rem;
+  padding: 0.75rem 1.5rem;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.menubar ul li a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Overlay pour mobile */
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 998;
+}
+
+.overlay.active {
+  display: block;
+}
+
+/* Responsive */
+@media screen and (max-width: 790px) {
+  .desktop-menu {
+      display: none; /* Masquer le menu desktop */
+  }
+
+  .hamburger {
+      display: block; /* Afficher le hamburger */
+  }
+
+  .menubar {
+      display: block; /* Afficher le menu mobile */
+  }
+}
+
+@media screen and (min-width: 791px) {
+  .menubar {
+      display: none !important; /* Masquer le menu mobile */
+  }
+  #notificationLink {
+    position: relative; /* Ensure the badge is positioned relative to the icon */
+    display: inline-block;
+  }
+  
+  #notificationBadge {
+    background-color: #ff4757; /* Red background for the badge */
+    color: #fff; /* White text color */
+    font-size: 12px; /* Small font size for the number */
+    padding: 2px 6px; /* Padding to make the badge look like a pill */
+    border-radius: 50%; /* Make the badge circular */
+    position: absolute; /* Position the badge absolutely within the link */
+    top: -5px; /* Adjust vertical position */
+    right: -5px; /* Adjust horizontal position */
+    display: none; /* Hidden by default */
+    min-width: 18px; /* Minimum width to ensure the badge is circular */
+    height: 18px; /* Fixed height for the badge */
+    text-align: center; /* Center the number horizontally */
+    line-height: 18px; /* Center the number vertically */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+  }
+  
+  /* Notification dropdown styling */
+  .notification-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-height: 300px;
+    overflow-y: auto;
+    width: 250px;
+    z-index: 1000;
+    display: none; /* Hidden by default */
+  }
+  
+  .notification-menu li {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+    color: #333;
+  }
+  
+  .notification-menu li:last-child {
+    border-bottom: none;
+  }
+  
+  .notification-menu li:hover {
+    background-color: #f9f9f9;
+  }
+  
+  
+}

@@ -1,0 +1,145 @@
+/* Styles généraux */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px;
+}
+
+h2 {
+    margin-bottom: 1.5rem;
+    color: #333;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #555;
+}
+
+input, select {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+button {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-right: 0.5rem;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+button.prev-btn {
+    background-color: #6c757d;
+}
+
+button.prev-btn:hover {
+    background-color: #5a6268;
+}
+
+/* Styles pour les étapes */
+.step {
+    display: none;
+}
+
+.step.active {
+    display: block;
+}
+.skills-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    font-size: 10px;
+   
+}
+
+.skill-checkbox {
+    background: #ecf0f1;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    display: flex;
+    align-items: center;
+}
+
+.skill-checkbox:hover {
+    background: #d0d3d4;
+}
+
+.skill-checkbox input[type="checkbox"] {
+    margin-right: 0.5rem;
+}
+
+/* Styles pour les erreurs */
+.error-container {
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    border-radius: 5px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.error-message {
+    color: #721c24;
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+input.error {
+    border-color: #dc3545;
+}
+/* Styles pour les erreurs */
+input.error {
+    border-color: #dc3545;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .container {
+        padding: 1rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    input, select {
+        font-size: 0.9rem;
+    }
+
+    button {
+        font-size: 0.9rem;
+        padding: 0.5rem 1rem;
+    }
+
+    #skillsSection {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    }
+}
+
