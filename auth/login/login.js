@@ -21,7 +21,7 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
             } else if (result.role === 'company') {
                 window.location.href = '../../company/company_dashboard.php';
             } else {
-                window.location.href = '../../studant/student_dashboard.php';
+                window.location.href = '../../studant/home_dashboard/student_dashboard.php';
             }
         }, 1000);
     }

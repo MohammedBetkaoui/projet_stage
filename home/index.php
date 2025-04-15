@@ -67,7 +67,7 @@ try {
                             <span><strong>Gratification:</strong> <?php echo $offer['compensation'] ? $offer['compensation'] . ' Dz/mois' : 'Non spécifiée'; ?></span>
                         </div>
                         <?php if($role == 'student'){?>
-                        <a href="/studant/apply.php?id=<?php echo $offer['id']; ?>" class="btn">Postuler</a>
+                        <a href="/studant/apply/apply.php?id=<?php echo $offer['id']; ?>" class="btn">Postuler</a>
                         <?php } ?>
                     </div>
                 <?php endforeach; ?>
