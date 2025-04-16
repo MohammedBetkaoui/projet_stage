@@ -1,7 +1,10 @@
 <?php include '../functions/offres/ajouter_offre_fun.php' ?>
 <!DOCTYPE html>
 <html lang="fr">
-<head>
+<<<<<<< HEAD
+=======
+
+>>>>>>> <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Publier une nouvelle offre</title>
@@ -9,7 +12,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
-<body>
+<<<<<<< HEAD
+=======
+
+>>>>>>> <body>
     <!-- Sidebar -->
     <?php include '../../includes/sidebar/sidebar.php'; ?>
 
@@ -17,8 +23,11 @@
     <section class="main-content">
         <div class="form-container">
             <h2>Publier une nouvelle offre de stage</h2>
+<<<<<<< HEAD
             
-            <!-- Alertes modernes -->
+=======
+
+>>>>>>>             <!-- Alertes modernes -->
             <?php if ($error): ?>
                 <div class="alert error">
                     <i class='bx bx-error-circle'></i>
@@ -87,6 +96,7 @@
                         <input type="number" id="compensation" name="compensation" min="0">
                     </div>
                     <div class="form-group">
+<<<<<<< HEAD
                         <label>Compétences requises</label>
                         <div class="skills-container">
                             <?php foreach ($skills as $skill): ?>
@@ -96,7 +106,18 @@
                                 </label>
                             <?php endforeach; ?>
                         </div>
-                    </div>
+=======
+                        <label>selectionne une branche</label>
+                        <select id="branch" name="branch_id" required>
+                            <option value="" disabled selected>Choisissez votre branche</option>
+                            <?php foreach ($branches as $branch): ?>
+                                <option value="<?php echo $branch['id']; ?>">
+                                    <?php echo htmlspecialchars($branch['name']); ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
+
+>>>>>>>                     </div>
                     <button type="button" class="prev-btn">Précédent</button>
                     <button type="submit" class="submit-btn">Publier l'offre</button>
                 </div>
@@ -107,4 +128,7 @@
     <!-- Scripts -->
     <script src="../../assets/js/ajouter_offre.js"></script>
 </body>
-</html>
+<<<<<<< HEAD
+=======
+
+>>>>>>> </html>

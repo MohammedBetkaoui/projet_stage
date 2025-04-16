@@ -1,0 +1,167 @@
+.relative {
+    position: relative;
+}
+
+.overflow-x-auto {
+    overflow-x: auto;
+}
+
+.shadow-md {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.sm\:rounded-lg {
+    border-radius: 0.5rem;
+}
+
+.w-full {
+    width: 100%;
+}
+
+.text-sm {
+    font-size: 0.875rem;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.rtl\:text-right {
+    text-align: right;
+}
+
+.text-gray-500 {
+    color: #6b7280;
+}
+
+.dark\:text-gray-400 {
+    color: #9ca3af;
+}
+
+.text-xs {
+    font-size: 0.75rem;
+}
+
+.text-gray-700 {
+    color: #374151;
+}
+
+.uppercase {
+    text-transform: uppercase;
+}
+
+.bg-gray-50 {
+    background-color: #f9fafb;
+}
+
+.dark\:bg-gray-700 {
+    background-color: #374151;
+}
+
+.dark\:text-gray-400 {
+    color: #9ca3af;
+}
+
+.p-4 {
+    padding: 1rem;
+}
+
+.px-6 {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
+
+.py-3 {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+}
+
+.bg-white {
+    background-color: #ffffff;
+}
+
+.border-b {
+    border-bottom-width: 1px;
+}
+
+.dark\:bg-gray-800 {
+    background-color: #1f2937;
+}
+
+.dark\:border-gray-700 {
+    border-color: #374151;
+}
+
+.border-gray-200 {
+    border-color: #e5e7eb;
+}
+
+.hover\:bg-gray-50:hover {
+    background-color: #f9fafb;
+}
+
+.dark\:hover\:bg-gray-600:hover {
+    background-color: #4b5563;
+}
+
+.font-medium {
+    font-weight: 500;
+}
+
+.text-gray-900 {
+    color: #111827;
+}
+
+.dark\:text-white {
+    color: #ffffff;
+}
+
+.whitespace-nowrap {
+    white-space: nowrap;
+}
+
+.text-blue-600 {
+    color: #2563eb;
+}
+
+.dark\:text-blue-500 {
+    color: #3b82f6;
+}
+
+.hover\:underline:hover {
+    text-decoration: underline;
+}
+/* Custom CSS for animations and additional styling */
+.offer-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.offer-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+.delete-btn, .edit-btn {
+    transition: color 0.3s ease;
+}
+.delete-btn:hover, .edit-btn:hover {
+    color: #1e40af; /* Darker blue for edit */
+}
+.delete-btn:hover {
+    color: #dc2626; /* Darker red for delete */
+}
+ /* Custom CSS for additional styling */
+ .form-container {
+    max-width: 800px; /* Adjust the max width of the form */
+}
+.date-inputs {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem; /* Space between the two date inputs */
+}
+@media (max-width: 640px) {
+    .date-inputs {
+        grid-template-columns: 1fr; /* Stack inputs on small screens */
+    }
+}
+#step2 {
+    display: none;
+}

@@ -18,7 +18,9 @@
             </div>
         </div>
     </header>
+<<<<<<< HEAD
 
-</body>
+=======
+>>>>>>> </body>
 <script src="/includes/header/header.js"></script>
 </html>

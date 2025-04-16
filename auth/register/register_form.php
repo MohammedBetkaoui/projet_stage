@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
+
+
+ <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inscription</title>
     <link rel="stylesheet" href="./register.css">
 </head>
-<body>
+
+
+ <body>
     <div class="container">
         <!-- Affichage des erreurs -->
         <?php if (!empty($errors)): ?>
@@ -31,7 +35,10 @@
             </div>
 
             <!-- Étape 2: Rôle et informations supplémentaires -->
+
             <div class="step" id="step2">
+
+            <div class="step" id="step2" style="display: none;">
                 <h2>Étape 2: Rôle et informations supplémentaires</h2>
                 <label for="role">Rôle:</label>
                 <select id="role" name="role" required>
@@ -46,6 +53,7 @@
                 <label for="address">Adresse:</label>
                 <input type="text" id="address" name="address">
                 <button type="button" class="prev-btn">Précédent</button>
+<<<<<<< HEAD
                 <button type="button" class="next-btn" id="nextButton">Suivant</button>
                 <button type="submit" id="submitButton" style="display: none;">S'inscrire</button>
             </div>
@@ -70,4 +78,32 @@
     
     <script src="./register.js"></script>
 </body>
-</html>
+=======
+                <button type="button" class="next-btn">Suivant</button>
+            </div>
+
+            <!-- Étape 3: Sélection du Branch (uniquement pour les étudiants) -->
+            <div class="step" id="step3" style="display: none;">
+                <h2>Étape 3: Sélection du Branch</h2>
+                <label for="branch">Branch:</label>
+                <select id="branch" name="branch">
+                    <option value="" disabled selected>Choisissez votre branche</option>
+                    <?php foreach ($branches as $branch): ?>
+                        <option value="<?php echo htmlspecialchars($branch['id']); ?>">
+                            <?php echo htmlspecialchars($branch['name']); ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+
+                <button type="button" class="prev-btn">Précédent</button>
+                <button type="submit">S'inscrire</button>
+            </div>
+
+        </form>
+        <p>Déjà inscrit? <a href="../login/login.php">Connectez-vous ici</a></p>
+    </div>
+
+    <script src="./register.js"></script>
+</body>
+
+>>>>>>> </html>

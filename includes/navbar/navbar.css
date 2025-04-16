@@ -149,4 +149,60 @@ nav {
   .menubar {
       display: none !important; /* Masquer le menu mobile */
   }
-}
+<<<<<<< HEAD
+=======
+  #notificationLink {
+    position: relative; /* Ensure the badge is positioned relative to the icon */
+    display: inline-block;
+  }
+  
+  #notificationBadge {
+    background-color: #ff4757; /* Red background for the badge */
+    color: #fff; /* White text color */
+    font-size: 12px; /* Small font size for the number */
+    padding: 2px 6px; /* Padding to make the badge look like a pill */
+    border-radius: 50%; /* Make the badge circular */
+    position: absolute; /* Position the badge absolutely within the link */
+    top: -5px; /* Adjust vertical position */
+    right: -5px; /* Adjust horizontal position */
+    display: none; /* Hidden by default */
+    min-width: 18px; /* Minimum width to ensure the badge is circular */
+    height: 18px; /* Fixed height for the badge */
+    text-align: center; /* Center the number horizontally */
+    line-height: 18px; /* Center the number vertically */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+  }
+  
+  /* Notification dropdown styling */
+  .notification-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-height: 300px;
+    overflow-y: auto;
+    width: 250px;
+    z-index: 1000;
+    display: none; /* Hidden by default */
+  }
+  
+  .notification-menu li {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+    color: #333;
+  }
+  
+  .notification-menu li:last-child {
+    border-bottom: none;
+  }
+  
+  .notification-menu li:hover {
+    background-color: #f9f9f9;
+  }
+  
+  
+>>>>>>> }

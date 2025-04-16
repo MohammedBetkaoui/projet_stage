@@ -16,9 +16,12 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/navbar/navbar.php'; // Inclu
 </head>
 <body>
     <!-- Header -->
+<<<<<<< HEAD
     <?php include '../../includes/header.php'; ?>
 
-    <!-- Section À propos -->
+=======
+    <?php include $_SERVER['DOCUMENT_ROOT'] . '/includes/header/header.php'; ?>
+>>>>>>>     <!-- Section À propos -->
     <section class="about-section">
         <div class="about-container">
             <h1>À propos de nous</h1>

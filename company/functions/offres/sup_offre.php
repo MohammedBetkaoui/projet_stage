@@ -17,6 +17,7 @@ if (!isset($_GET['id'])) {
 $offer_id = intval($_GET['id']); // Récupérer l'ID de l'offre
 
 try {
+<<<<<<< HEAD
     // Commencer une transaction
     $conn->begin_transaction();
 
@@ -24,7 +25,9 @@ try {
     $stmt = $conn->prepare("DELETE FROM offer_skills WHERE offer_id = ?");
     $stmt->bind_param("i", $offer_id);
     $stmt->execute();
-
+=======
+   
+>>>>>>> 
     // Supprimer l'offre de la table `offers`
     $stmt = $conn->prepare("DELETE FROM offers WHERE id = ? AND company_id = ?");
     $stmt->bind_param("ii", $offer_id, $_SESSION['user_id']);
