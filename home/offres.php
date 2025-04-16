@@ -3,16 +3,6 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-<<<<<<< HEAD
-require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/db/db.php'; // Inclure la connexion à la base de données
-require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/navbar/navbar.php'; // Inclure la navbar
-require_once $_SERVER['DOCUMENT_ROOT'] . '/company/functions/offres/get_offres.php'; // Inclure la fonction pour récupérer les offres
-
-// Récupérer les offres disponibles (non dépassées)
-$offers = [];
-try {
-    // Récupérer uniquement les offres dont la date limite n'est pas passée
-=======
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/db/db.php'; 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/navbar/navbar.php'; 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/company/functions/offres/get_offres.php'; 
@@ -32,20 +22,15 @@ $totalPages = ceil($totalOffers / $offerPerPage);
 // Récupérer les offres paginées
 $offers = [];
 try {
->>>>>>>     $stmt = $conn->prepare("
+    $stmt = $conn->prepare("
         SELECT o.id, o.title, o.description, o.sector, o.location, o.start_date, o.end_date, o.deadline, o.compensation, c.full_name AS company_name
         FROM offers o
         JOIN users c ON o.company_id = c.id
-<<<<<<< HEAD
-        WHERE o.deadline >= CURDATE() -- Filtrer les offres non dépassées
-        ORDER BY o.created_at DESC
-    ");
-=======
         ORDER BY o.created_at DESC
         LIMIT ?, ?
     ");
     $stmt->bind_param("ii", $start, $offerPerPage);
->>>>>>>     $stmt->execute();
+    $stmt->execute();
     $result = $stmt->get_result();
     $offers = $result->fetch_all(MYSQLI_ASSOC);
 } catch (Exception $e) {
@@ -60,10 +45,8 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Accueil - Plateforme de stages</title>
     <link rel="stylesheet" href="/assets/css/index.css">
-<<<<<<< HEAD
-=======
      <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
->>>>>>>     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -74,18 +57,11 @@ try {
     <section class="offers-section">
         <h2>Offres de stages disponibles</h2>
         <br>
-<<<<<<< HEAD
-        <?php 
-            if (!isset($_SESSION['user_id'])){ ?>
-                <p>Remarque: <mark> Vous devez vous connecter pour postuler</mark></p>
-                        <?php } ?>
-                        <br>
-=======
         <?php if (!isset($_SESSION['user_id'])) { ?>
             <p>Remarque: <mark> Vous devez vous connecter pour postuler</mark></p>
         <?php } ?>
         <br>
->>>>>>>         <div class="offers-container">
+        <div class="offers-container">
             <?php if (!empty($offers)): ?>
                 <?php foreach ($offers as $offer): ?>
                     <div class="offer-card">
@@ -100,25 +76,17 @@ try {
                             <span><strong>Dernier délai:</strong> <?php echo htmlspecialchars($offer['deadline']); ?></span>
                             <span><strong>Gratification:</strong> <?php echo $offer['compensation'] ? $offer['compensation'] . ' Dz/mois' : 'Non spécifiée'; ?></span>
                         </div>
-<<<<<<< HEAD
-                        <?php if($role == 'student'){?>
-                        <a href="/studant/apply.php?id=<?php echo $offer['id']; ?>" class="btn">Postuler</a>
-=======
                         <?php if(isset($_SESSION['role']) && $_SESSION['role'] == 'student'){ ?>
                             <a href="/studant/apply/apply.php?id=<?php echo $offer['id']; ?>" class="btn">Postuler</a>
                         <?php } else { ?>
                             <p class="auth-message">Seuls les étudiants peuvent postuler.</p>
->>>>>>>                         <?php } ?>
+                        <?php } ?>
                     </div>
                 <?php endforeach; ?>
             <?php else: ?>
                 <p class="no-offers">Aucune offre disponible pour le moment.</p>
             <?php endif; ?>
         </div>
-<<<<<<< HEAD
-        <br><br>
-        
-=======
 
         
         <!-- Pagination -->
@@ -134,13 +102,9 @@ try {
             <?php endif; ?>
         </div>
         <br><br>
->>>>>>>     </section>
+    </section>
              
     <!-- Footer -->
     <?php include '../includes/footer.php'; ?>
 </body>
-<<<<<<< HEAD
 </html>
-=======
-</html>
->>>>>>> 

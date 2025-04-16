@@ -3,9 +3,7 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 $role = $_SESSION['role'] ?? 'guest';
-
 $user_id = $_SESSION['user_id'] ?? null; // Get user_id from session
-
 ?>
 
 <!DOCTYPE html>
@@ -17,9 +15,7 @@ $user_id = $_SESSION['user_id'] ?? null; // Get user_id from session
     <title>Stage</title>
     <link rel="stylesheet" href="/includes/navbar/navbar.css"> 
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'> <!-- Boxicons pour les icônes -->
-
     <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script> <!-- Socket.IO Library -->
-
 </head>
 <body>
     <nav>
@@ -42,8 +38,6 @@ $user_id = $_SESSION['user_id'] ?? null; // Get user_id from session
             <?php endif; ?>
 
             <?php if (isset($_SESSION['user_id'])): ?>
-
-
                 <!-- Notification Icon -->
                 <li>
                     <a href="#" id="notificationLink">
@@ -52,7 +46,6 @@ $user_id = $_SESSION['user_id'] ?? null; // Get user_id from session
                     </a>
                     <ul id="notificationDropdown" class="notification-menu" style="display: none;"></ul>
                 </li>
-
                 <li><a href="../../auth/logout/logout.php"><i class='bx bx-log-out'></i> Déconnexion</a></li>
             <?php else: ?>
                 <li><a href="../../auth/login/login.php"><i class='bx bx-log-in'></i> Connexion</a></li>
@@ -82,8 +75,6 @@ $user_id = $_SESSION['user_id'] ?? null; // Get user_id from session
                 <?php endif; ?>
 
                 <?php if (isset($_SESSION['user_id'])): ?>
-
-
                     <!-- Notification Icon for Mobile -->
                     <li>
                         <a href="#" id="notificationLinkMobile">
@@ -92,7 +83,6 @@ $user_id = $_SESSION['user_id'] ?? null; // Get user_id from session
                         </a>
                         <ul id="notificationDropdownMobile" class="notification-menu" style="display: none;"></ul>
                     </li>
-
                     <li><a href="../../auth/logout/logout.php"><i class='bx bx-log-out'></i> Déconnexion</a></li>
                 <?php else: ?>
                     <li><a href="../../auth/login/login.php"><i class='bx bx-log-in'></i> Connexion</a></li>
@@ -104,7 +94,6 @@ $user_id = $_SESSION['user_id'] ?? null; // Get user_id from session
         <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
     </nav>
 
-    <script src="/includes/navbar/navbar.js"></script> <!-- Script pour le toggle -->
     <script src="/includes/navbar/navbar.js"></script>
     <script>
     // Get user_id from PHP session

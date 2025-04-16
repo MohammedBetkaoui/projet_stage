@@ -149,8 +149,6 @@ nav {
   .menubar {
       display: none !important; /* Masquer le menu mobile */
   }
-<<<<<<< HEAD
-=======
   #notificationLink {
     position: relative; /* Ensure the badge is positioned relative to the icon */
     display: inline-block;
@@ -205,4 +203,4 @@ nav {
   }
   
   
->>>>>>> }
+}

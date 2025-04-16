@@ -103,11 +103,8 @@ try {
 
     <!-- Section "Témoignages" -->
     <section class="testimonials-section">
-<<<<<<< HEAD
-        <h2>Témoignages</h2>
-=======
         <h2>Témoignage</h2>
->>>>>>>         <div class="testimonials-container">
+        <div class="testimonials-container">
             <div class="testimonial-card">
                 <p>"Grâce à StageFinder, j'ai trouvé un stage dans une entreprise innovante. Une expérience incroyable !"</p>
                 <span>- Amine, étudiant en informatique</span>

@@ -1,16 +1,14 @@
 <!DOCTYPE html>
 <html lang="fr">
 
-
- <head>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inscription</title>
     <link rel="stylesheet" href="./register.css">
 </head>
 
-
- <body>
+<body>
     <div class="container">
         <!-- Affichage des erreurs -->
         <?php if (!empty($errors)): ?>
@@ -35,9 +33,6 @@
             </div>
 
             <!-- Étape 2: Rôle et informations supplémentaires -->
-
-            <div class="step" id="step2">
-
             <div class="step" id="step2" style="display: none;">
                 <h2>Étape 2: Rôle et informations supplémentaires</h2>
                 <label for="role">Rôle:</label>
@@ -53,32 +48,6 @@
                 <label for="address">Adresse:</label>
                 <input type="text" id="address" name="address">
                 <button type="button" class="prev-btn">Précédent</button>
-<<<<<<< HEAD
-                <button type="button" class="next-btn" id="nextButton">Suivant</button>
-                <button type="submit" id="submitButton" style="display: none;">S'inscrire</button>
-            </div>
-
-            <!-- Étape 3: Compétences (uniquement pour les étudiants) -->
-            <div class="step" id="step3">
-                <h2>Étape 3: Compétences</h2>
-                <div class="skills-container">
-                    <?php foreach ($skills as $skill): ?>
-                        <label class="skill-checkbox">
-                            <input type="checkbox" name="skills[]" value="<?php echo $skill['id']; ?>">
-                            <span><?php echo htmlspecialchars($skill['name']); ?></span>
-                        </label>
-                    <?php endforeach; ?>
-                </div>
-                <button type="button" class="prev-btn">Précédent</button>
-                <button type="submit">S'inscrire</button>
-            </div>
-        </form>
-        <p>test? <a href="../login/login.php">connecte-vous ici</a></p>
-        </div>
-    
-    <script src="./register.js"></script>
-</body>
-=======
                 <button type="button" class="next-btn">Suivant</button>
             </div>
 
@@ -106,4 +75,4 @@
     <script src="./register.js"></script>
 </body>
 
->>>>>>> </html>
+</html>

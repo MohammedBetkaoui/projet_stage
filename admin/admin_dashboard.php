@@ -7,18 +7,6 @@ if ($_SESSION['role'] !== 'admin') {
     exit;
 }
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/sidebar/sidebar.php';
-<<<<<<< HEAD
-?>
-
-<link rel="stylesheet" href="/assets/css/dashboard.css">
-
-<div class="welcome-section">
-                    <h1>Bienvenue, <?php echo htmlspecialchars($_SESSION['username']); ?> !</h1>
-                    <p>Gérez vos offres de stage et interagissez avec les étudiants.</p>
-                </div>
-
-<link rel="stylesheet" href="../assets//css/dashboard.css">
-=======
 
 ?>
 
@@ -110,4 +98,3 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/sidebar/sidebar.php';
 </body>
 
 </html>
->>>>>>> 
