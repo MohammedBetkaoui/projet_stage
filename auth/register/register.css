@@ -1,145 +1,98 @@
-/* Styles généraux */
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f4f9;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f5f5;
     margin: 0;
     padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
+    color: #333;
 }
 
 .container {
-    background-color: #fff;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 100%;
     max-width: 500px;
 }
 
 h2 {
+    color: #2c3e50;
     margin-bottom: 1.5rem;
-    color: #333;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 1.2rem;
 }
 
 label {
     display: block;
     margin-bottom: 0.5rem;
-    color: #555;
+    font-weight: 500;
 }
 
 input, select {
     width: 100%;
     padding: 0.75rem;
-    margin-bottom: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
     font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+input:focus, select:focus {
+    border-color: #3498db;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
 }
 
 button {
-    padding: 0.75rem 1.5rem;
+    background-color: #3498db;
+    color: white;
     border: none;
-    border-radius: 5px;
-    background-color: #007bff;
-    color: #fff;
-    font-size: 1rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
     cursor: pointer;
-    margin-right: 0.5rem;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+    margin-top: 1rem;
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #2980b9;
 }
 
-button.prev-btn {
-    background-color: #6c757d;
+button[type="button"] {
+    margin-right: 1rem;
 }
 
-button.prev-btn:hover {
-    background-color: #5a6268;
-}
-
-/* Styles pour les étapes */
-.step {
-    display: none;
-}
-
-.step.active {
-    display: block;
-}
-.skills-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    font-size: 10px;
-   
-}
-
-.skill-checkbox {
-    background: #ecf0f1;
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: background 0.3s ease;
-    display: flex;
-    align-items: center;
-}
-
-.skill-checkbox:hover {
-    background: #d0d3d4;
-}
-
-.skill-checkbox input[type="checkbox"] {
-    margin-right: 0.5rem;
-}
-
-/* Styles pour les erreurs */
 .error-container {
     background-color: #f8d7da;
-    border: 1px solid #f5c6cb;
-    border-radius: 5px;
+    color: #721c24;
     padding: 1rem;
-    margin-bottom: 1rem;
+    border-radius: 4px;
+    margin-bottom: 1.5rem;
 }
 
 .error-message {
-    color: #721c24;
-    margin: 0;
-    font-size: 0.9rem;
+    margin: 0.3rem 0;
 }
 
-input.error {
-    border-color: #dc3545;
-}
-/* Styles pour les erreurs */
-input.error {
-    border-color: #dc3545;
+.login-link {
+    text-align: center;
+    margin-top: 1.5rem;
+    color: #666;
 }
 
-/* Responsive Design */
-@media (max-width: 600px) {
-    .container {
-        padding: 1rem;
-    }
-
-    h2 {
-        font-size: 1.5rem;
-    }
-
-    input, select {
-        font-size: 0.9rem;
-    }
-
-    button {
-        font-size: 0.9rem;
-        padding: 0.5rem 1rem;
-    }
-
-    #skillsSection {
-        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    }
+.login-link a {
+    color: #3498db;
+    text-decoration: none;
 }
 
+.login-link a:hover {
+    text-decoration: underline;
+}

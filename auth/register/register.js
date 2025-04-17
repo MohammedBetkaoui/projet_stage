@@ -1,83 +1,72 @@
-document.addEventListener('DOMContentLoaded', function () {
-    const steps = document.querySelectorAll('.step');
-    const nextButtons = document.querySelectorAll('.next-btn');
-    const prevButtons = document.querySelectorAll('.prev-btn');
-    const roleSelect = document.getElementById('role');
-    const nextButton = document.getElementById('nextButton');
-    const submitButton = document.getElementById('submitButton');
-
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('registerForm');
+    const steps = Array.from(document.querySelectorAll('.step'));
     let currentStep = 0;
 
-    // Fonction pour afficher une étape spécifique
+    // Navigation entre les étapes
     function showStep(stepIndex) {
         steps.forEach((step, index) => {
             step.style.display = index === stepIndex ? 'block' : 'none';
         });
-
-        // Gérer l'affichage des boutons en fonction du rôle
-        if (stepIndex === 1) {
-            if (roleSelect.value === 'student') {
-                nextButton.style.display = 'inline-block';
-                submitButton.style.display = 'none';
-            } else if (roleSelect.value === 'company') {
-                nextButton.style.display = 'none';
-                submitButton.style.display = 'inline-block';
-            }
-        }
-
-        // Masquer l'étape 3 si le rôle est "company"
-        if (stepIndex === 2 && roleSelect.value === 'company') {
-            steps[2].style.display = 'none';
-            submitButton.style.display = 'block';
-        }
     }
 
-    // Fonction pour valider l'étape actuelle
-    function validateStep(stepIndex) {
-        const inputs = steps[stepIndex].querySelectorAll('input, select');
-        let isValid = true;
-        inputs.forEach(input => {
-            if (!input.checkValidity()) {
-                isValid = false;
-                input.classList.add('error');
-            } else {
-                input.classList.remove('error');
-            }
-        });
-        return isValid;
+    // Validation de l'étape 1
+    function validateStep1() {
+        const username = document.getElementById('username').value.trim();
+        const password = document.getElementById('password').value;
+        const email = document.getElementById('email').value.trim();
+        
+        if (!username || !password || !email) {
+            alert('Veuillez remplir tous les champs obligatoires.');
+            return false;
+        }
+        
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            alert('Veuillez entrer une adresse email valide.');
+            return false;
+        }
+        
+        return true;
     }
 
-    // Écouteurs d'événements pour les boutons "Suivant"
-    nextButtons.forEach(button => {
-        button.addEventListener('click', function () {
-            if (validateStep(currentStep)) {
+    // Validation de l'étape 2
+    function validateStep2() {
+        const role = document.getElementById('role').value;
+        const fullName = document.getElementById('full_name').value.trim();
+        
+        if (!role || !fullName) {
+            alert('Veuillez remplir tous les champs obligatoires.');
+            return false;
+        }
+        
+        return true;
+    }
+
+    // Gestion des boutons Suivant
+    document.querySelectorAll('.next-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            const isValid = currentStep === 0 ? validateStep1() : validateStep2();
+            
+            if (isValid) {
                 currentStep++;
                 showStep(currentStep);
+                
+                // Si on arrive à l'étape 3 et que le rôle n'est pas étudiant, soumettre le formulaire
+                if (currentStep === 2 && document.getElementById('role').value !== 'student') {
+                    form.submit();
+                }
             }
         });
     });
 
-    // Écouteurs d'événements pour les boutons "Précédent"
-    prevButtons.forEach(button => {
-        button.addEventListener('click', function () {
+    // Gestion des boutons Précédent
+    document.querySelectorAll('.prev-btn').forEach(button => {
+        button.addEventListener('click', function() {
             currentStep--;
             showStep(currentStep);
         });
     });
 
-    // Écouteur d'événement pour le changement de rôle
-    roleSelect.addEventListener('change', function () {
-        if (currentStep === 1) {
-            if (roleSelect.value === 'student') {
-                nextButton.style.display = 'inline-block';
-                submitButton.style.display = 'none';
-            } else if (roleSelect.value === 'company') {
-                nextButton.style.display = 'none';
-                submitButton.style.display = 'inline-block';
-            }
-        }
-    });
-
-    // Afficher la première étape au chargement
-    showStep(currentStep);
+    // Initialisation
+    showStep(0);
 });
