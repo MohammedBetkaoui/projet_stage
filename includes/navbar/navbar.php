@@ -19,9 +19,10 @@ $user_id = $_SESSION['user_id'] ?? null; // Get user_id from session
 </head>
 <body>
     <nav>
-        <div class="logo">
-            <h1>StageFinder</h1>
-        </div>
+    <div class="flex-shrink-0 flex items-center">
+                        <i class="fas fa-briefcase text-primary text-2xl mr-2"></i>
+                        <span class="text-xl font-bold text-dark">StageFinder</span>
+                    </div>
 
         <!-- Menu desktop -->
         <ul class="desktop-menu">

@@ -10,7 +10,7 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: linear-gradient(135deg, #2c3e50, #3498db);
+  background: rgb(228, 238, 249);
   color: #fff;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   position: relative;
@@ -20,7 +20,7 @@ nav {
 /* Logo */
 .logo h1 {
   font-size: 1.5rem;
-  color: #fff;
+  color: #cac4c4;
   font-weight: bold;
 }
 
@@ -34,13 +34,15 @@ nav {
 
 .desktop-menu li a {
   text-decoration: none;
-  color: #fff;
+  color: #525151;
   font-weight: 500;
   padding: 0.5rem 1rem;
   border-radius: 5px;
   transition: all 0.3s ease;
   display: flex;
   align-items: center;
+  font-size: 13px;
+
 }
 
 .desktop-menu li a:hover {
@@ -52,12 +54,13 @@ nav {
   display: none; /* Caché par défaut */
   cursor: pointer;
   z-index: 1001;
+  background: rgb(255, 255, 255);
 }
 
 .hamburger .line {
   width: 25px;
   height: 3px;
-  background-color: #fff;
+  background-color: #000000;
   margin: 5px 0;
   transition: all 0.3s ease;
 }
@@ -71,9 +74,7 @@ nav {
   opacity: 0;
 }
 
-.hamburger-active .line:nth-child(3) {
-  transform: translateY(-8px) rotate(-45deg);
-}
+
 
 /* Menu mobile */
 .menubar {

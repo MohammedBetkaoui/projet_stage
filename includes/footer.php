@@ -1,46 +1,148 @@
-<?php
-// Footer avec des liens et des icônes sociales
-?>
-<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-<link rel="stylesheet" href="/assets/css/footer.css">
-<footer class="footer">
-    <div class="footer-container">
-        <!-- Section des liens utiles -->
-        <div class="footer-section">
-            <h3>Liens utiles</h3>
-            <ul class="footer-links">
-                <li><a href="/about.php">À propos</a></li>
-                <li><a href="/contact.php">Contact</a></li>
-                <li><a href="/privacy.php">Confidentialité</a></li>
-                <li><a href="/terms.php">Conditions d'utilisation</a></li>
-            </ul>
+<footer class="bg-dark">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+            <div class="xl:grid xl:grid-cols-3 xl:gap-8">
+                <div class="space-y-8 xl:col-span-1">
+                    <div class="flex items-center">
+                        <i class="fas fa-briefcase text-primary text-2xl mr-2"></i>
+                        <span class="text-xl font-bold text-white">StageFinder</span>
+                    </div>
+                    <p class="text-gray-300 text-base">
+                        La plateforme de référence pour trouver et proposer des stages étudiants en France.
+                    </p>
+                    <div class="flex space-x-6">
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <span class="sr-only">Facebook</span>
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <span class="sr-only">Twitter</span>
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <span class="sr-only">LinkedIn</span>
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="mt-12 grid grid-cols-2 gap-8 xl:mt-0 xl:col-span-2">
+                    <div class="md:grid md:grid-cols-2 md:gap-8">
+                        <div>
+                            <h3 class="text-sm font-semibold text-gray-300 tracking-wider uppercase">
+                                Étudiants
+                            </h3>
+                            <ul class="mt-4 space-y-4">
+                                <li>
+                                    <a href="#" class="text-base text-gray-400 hover:text-white">
+                                        Trouver un stage
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="text-base text-gray-400 hover:text-white">
+                                        Conseils pour postuler
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="text-base text-gray-400 hover:text-white">
+                                        Modèles de CV
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="text-base text-gray-400 hover:text-white">
+                                        FAQ
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="mt-12 md:mt-0">
+                            <h3 class="text-sm font-semibold text-gray-300 tracking-wider uppercase">
+                                Entreprises
+                            </h3>
+                            <ul class="mt-4 space-y-4">
+                                <li>
+                                    <a href="#" class="text-base text-gray-400 hover:text-white">
+                                        Publier une offre
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="text-base text-gray-400 hover:text-white">
+                                        Tarifs
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="text-base text-gray-400 hover:text-white">
+                                        Conseils de recrutement
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="text-base text-gray-400 hover:text-white">
+                                        Espace entreprise
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="md:grid md:grid-cols-2 md:gap-8">
+                        <div>
+                            <h3 class="text-sm font-semibold text-gray-300 tracking-wider uppercase">
+                                À propos
+                            </h3>
+                            <ul class="mt-4 space-y-4">
+                                <li>
+                                    <a href="#" class="text-base text-gray-400 hover:text-white">
+                                        Notre mission
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="text-base text-gray-400 hover:text-white">
+                                        L'équipe
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="text-base text-gray-400 hover:text-white">
+                                        Presse
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="text-base text-gray-400 hover:text-white">
+                                        Nous rejoindre
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="mt-12 md:mt-0">
+                            <h3 class="text-sm font-semibold text-gray-300 tracking-wider uppercase">
+                                Légal
+                            </h3>
+                            <ul class="mt-4 space-y-4">
+                                <li>
+                                    <a href="#" class="text-base text-gray-400 hover:text-white">
+                                        Confidentialité
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="text-base text-gray-400 hover:text-white">
+                                        Conditions
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="text-base text-gray-400 hover:text-white">
+                                        Cookies
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="text-base text-gray-400 hover:text-white">
+                                        Contact
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-12 border-t border-gray-700 pt-8">
+                <p class="text-base text-gray-400 text-center">
+                    &copy; 2025 StageFinder. Tous droits réservés.
+                </p>
+            </div>
         </div>
-
-        <!-- Section des réseaux sociaux -->
-        <div class="footer-section">
-        
-            <h3>Suivez-nous</h3>
-            <ul class="social-links">
-                <li><a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class='bx bxl-facebook'></i></a></li>
-                <li><a href="https://twitter.com" target="_blank" aria-label="Twitter"><i class='bx bxl-twitter'></i></a></li>
-                <li><a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class='bx bxl-instagram'></i></a></li>
-                <li><a href="https://linkedin.com" target="_blank" aria-label="LinkedIn"><i class='bx bxl-linkedin'></i></a></li>
-            </ul>
-        </div>
-
-        <!-- Section des informations de contact -->
-        <div class="footer-section">
-            <h3>Contactez-nous</h3>
-            <ul class="contact-info">
-                <li><i class='bx bx-envelope'></i> contact@plateforme-stages.com</li>
-                <li><i class='bx bx-phone'></i> +213 783 96 23 48</li>
-                <li><i class='bx bx-map'></i> univarsité de Bourdj Bou Arreridj</li>
-            </ul>
-        </div>
-    </div>
-
-    <!-- Copyright -->
-    <div class="footer-bottom">
-        <p>&copy; 2025 Plateforme de stages. Tous droits réservés.</p>
-    </div>
-</footer>
+    </footer>
