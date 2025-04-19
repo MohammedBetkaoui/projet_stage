@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/db/db.php'; // Inclure la connexion à la base de données
+require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/navbar/navbar.php'; // Inclure la navbar
 
 // Vérifier si l'utilisateur est connecté et est un étudiant
 if (!isset($_SESSION['user_id'])) {
@@ -84,12 +85,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Postuler à une offre</title>
     <link rel="stylesheet" href="./apply.css"> <!-- Lien vers le fichier CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
+
+
+<script>
+tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4F46E5',
+                        secondary: '#10B981',
+                        dark: '#1F2937',
+                        light: '#F9FAFB',
+                    }
+                }
+            }
+        }
+    </script>
 <body>
   
-    <?php include $_SERVER['DOCUMENT_ROOT'] . '/includes/navbar/navbar.php'; ?>
 
     <!-- Contenu principal -->
     <section class="main-content">

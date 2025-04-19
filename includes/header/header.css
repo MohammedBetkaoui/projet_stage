@@ -1,75 +1,47 @@
-/* Reset CSS */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
 
-body {
-    font-family: 'Arial', sans-serif;
-    line-height: 1.6;
-    color: #333;
-}
-
-.container {
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.header {
-    background: linear-gradient(135deg, #2c3e50, #3498db);
-    color: #fff;
-    padding: 100px 0;
-    text-align: center;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-}
-
-.header-content h1 {
-    font-size: 48px;
-    margin-bottom: 20px;
-    font-weight: bold;
-}
-
-.header-content .description {
-    font-size: 18px;
-    margin-bottom: 30px;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-    line-height: 1.8;
-}
-
-.btn-explore {
-    background-color: #1abc9c;
-    color: #fff;
-    padding: 15px 30px;
-    border-radius: 5px;
-    text-decoration: none;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-}
-
-.btn-explore:hover {
-    background-color: #16a085;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .header {
-        padding: 60px 0;
-    }
-
-    .header-content h1 {
-        font-size: 36px;
-    }
-
-    .header-content .description {
-        font-size: 16px;
-    }
-
-    .btn-explore {
-        padding: 12px 24px;
-        font-size: 14px;
-    }
-}
+        .gradient-bg {
+            background: linear-gradient(135deg, #4F46E5 0%, #10B981 100%);
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .transition-all {
+            transition: all 0.3s ease;
+        }
+        .timeline-step {
+            position: relative;
+            padding-left: 2rem;
+        }
+        .timeline-step:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 1.5rem;
+            height: 1.5rem;
+            border-radius: 50%;
+            background: #E5E7EB;
+        }
+        .timeline-step.active:before {
+            background: #10B981;
+        }
+        .timeline-step.completed:before {
+            background: #10B981;
+            content: '✓';
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+        }
+        .timeline-step.rejected:before {
+            background: #EF4444;
+            content: '✕';
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+        }
+    

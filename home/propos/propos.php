@@ -11,9 +11,20 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/navbar/navbar.php'; // Inclu
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>À propos - Plateforme de stages</title>
     <link rel="stylesheet" href="/assets/css/propos.css"> <!-- Lien vers le fichier CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    
 </head>
+
+
+    
 <body>
     <!-- Header -->
     <?php include $_SERVER['DOCUMENT_ROOT'] . '/includes/header/header.php'; ?>
@@ -61,6 +72,10 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/navbar/navbar.php'; // Inclu
         </div>
     </section>
 
+       <?php include '../../home/include/domain.php' ?>
+       
+       <?php  include '../../home/include/section.php' ?>
+       
     <!-- Footer -->
     <?php include '../../includes/footer.php'; ?>
 
