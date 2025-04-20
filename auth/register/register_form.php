@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inscription</title>
     <link rel="stylesheet" href="./register.css">
+    <!-- Ajout des librairies nécessaires pour la vérification -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
+    <script>
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.worker.min.js';
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@4/dist/tesseract.min.js"></script>
 </head>
 <body>
     <div class="container">
@@ -16,7 +22,7 @@
             </div>
         <?php endif; ?>
 
-        <form id="registerForm" action="register.php" method="POST" novalidate>
+        <form id="registerForm" action="register.php" method="POST" novalidate enctype="multipart/form-data">
             <!-- Étape 1: Informations de base -->
             <div class="step" id="step1">
                 <h2>Étape 1: Informations de base</h2>
@@ -64,12 +70,31 @@
                            value="<?= htmlspecialchars($_POST['address'] ?? '') ?>">
                 </div>
                 <button type="button" class="prev-btn">Précédent</button>
-                <button type="button" class="next-btn">Suivant</button>
+                <button type="button" class="next-btn" id="next-btn-step2">Suivant</button>
+                <button type="submit" class="submit-btn" id="submit-btn-step2" style="display: none;">S'inscrire</button>
+            </div>
+               
+            <!-- Étape 3: Vérification du certificat de scolarité (uniquement pour les étudiants) -->
+            <div class="step" id="step3" style="display: none;">
+                <h2>Étape 3: Vérification du certificat de scolarité</h2>
+                <div id="certificate-verification-container">
+                    <div class="upload-container">
+                        <p>Pour les étudiants, veuillez télécharger votre certificat de scolarité pour vérification :</p>
+                        <input type="file" id="certificate-file" accept="application/pdf,image/*">
+                        <button type="button" id="verify-certificate">Vérifier le certificat</button>
+                    </div>
+                    <div id="verification-result" style="display: none; margin-top: 20px;">
+                        <div id="verification-message"></div>
+                        <input type="hidden" id="certificate_verified" name="certificate_verified" value="0">
+                    </div>
+                </div>
+                <button type="button" class="prev-btn">Précédent</button>
+                <button type="button" class="next-btn" id="next-after-verification" style="display: none;">Suivant</button>
             </div>
 
-            <!-- Étape 3: Sélection du Branch (uniquement pour les étudiants) -->
-            <div class="step" id="step3" style="display: none;">
-                <h2>Étape 3: Sélection du Branch</h2>
+            <!-- Étape 4: Sélection du Branch (uniquement pour les étudiants) -->
+            <div class="step" id="step4" style="display: none;">
+                <h2>Étape 4: Sélection du Branch</h2>
                 <div class="form-group">
                     <label for="branch">Branch:</label>
                     <select id="branch" name="branch">
@@ -91,5 +116,6 @@
     </div>
 
     <script src="./register.js"></script>
+    <script src="./verification_register.js"></script>
 </body>
 </html>

@@ -29,15 +29,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'full_name' => trim($_POST['full_name'] ?? ''),
         'phone' => trim($_POST['phone'] ?? ''),
         'address' => trim($_POST['address'] ?? ''),
-        'branch' => isset($_POST['branch']) ? intval($_POST['branch']) : null
+        'branch' => isset($_POST['branch']) ? intval($_POST['branch']) : null,
+        'certificate_verified' => $_POST['certificate_verified'] ?? false
     ];
 
-    if ($registerHandler->registerUser($userData)) {
-        $_SESSION['message'] = 'Inscription réussie!';
-        header('Location: ../../auth/login/login.php');
-        exit();
+    // Si c'est un étudiant, vérifier que le certificat est validé
+    if ($userData['role'] === 'student' && empty($_SESSION['certificate_verified'])) {
+        $errors[] = "Veuillez valider votre certificat de scolarité avant de finaliser l'inscription.";
     } else {
-        $errors = $registerHandler->getErrors();
+        if ($registerHandler->registerUser($userData)) {
+            $_SESSION['message'] = 'Inscription réussie!';
+            unset($_SESSION['certificate_verified']); // Nettoyer la session
+            header('Location: ../../auth/login/login.php');
+            exit();
+        } else {
+            $errors = $registerHandler->getErrors();
+        }
     }
 }
 
