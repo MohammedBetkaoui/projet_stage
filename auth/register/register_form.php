@@ -262,9 +262,7 @@
                             </select>
                         </div>
                         
-                        <div class="pt-2">
-                            <p class="text-sm text-gray-600">En vous inscrivant, vous acceptez nos <a href="#" class="text-indigo-600 hover:underline">Conditions d'utilisation</a> et notre <a href="#" class="text-indigo-600 hover:underline">Politique de confidentialité</a>.</p>
-                        </div>
+                       
                     </div>
                     
                     <div class="mt-8 flex justify-between">
