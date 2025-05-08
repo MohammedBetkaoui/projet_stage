@@ -1,6 +1,47 @@
 
         .gradient-bg {
             background: linear-gradient(135deg, #4F46E5 0%, #10B981 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gradient-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('/assets/images/pattern.svg') repeat;
+            opacity: 0.05;
+            z-index: 0;
+        }
+
+        .gradient-bg > div {
+            position: relative;
+            z-index: 1;
+        }
+
+        .mobile-menu-button {
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-button:hover span {
+            background-color: #10B981;
+        }
+
+        .nav {
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .nav.active {
+            display: flex;
+        }
+
+        @media (max-width: 768px) {
+            .gradient-bg {
+                min-height: 100vh;
+            }
         }
         .card-hover:hover {
             transform: translateY(-5px);
