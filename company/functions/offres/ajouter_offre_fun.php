@@ -23,23 +23,81 @@ if ($result && $result->num_rows > 0) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $title = trim($_POST['title']);
-    $description = trim($_POST['description']);
-    $sector = trim($_POST['sector']);
-    $location = trim($_POST['location']);
-    $start_date = $_POST['start_date'];
-    $end_date = $_POST['end_date'];
-    $deadline = $_POST['deadline'];
-    $compensation = $_POST['compensation'];
+    $title = trim($_POST['title'] ?? '');
+    $description = trim($_POST['description'] ?? '');
+    $sector = trim($_POST['sector'] ?? '');
+    $location = trim($_POST['location'] ?? '');
+    $start_date = $_POST['start_date'] ?? '';
+    $end_date = $_POST['end_date'] ?? '';
+    $deadline = $_POST['deadline'] ?? '';
+    $compensation = isset($_POST['compensation']) && is_numeric($_POST['compensation']) ? (int)$_POST['compensation'] : 0;
     $branch_id = $_POST['branch_id'] ?? null;
 
-    // Validate fields
-    if (empty($title) || empty($description) || empty($sector) || empty($location) || empty($start_date) || empty($end_date) || empty($deadline) || empty($branch_id)) {
-        $error = 'Tous les champs obligatoires doivent être remplis';
-    } elseif ($end_date <= $start_date) {
-        $error = 'La date de fin doit être postérieure à la date de début';
-    } elseif ($deadline <= date('Y-m-d')) {
-        $error = 'La date limite de candidature doit être postérieure à aujourd\'hui';
+    // Validation améliorée
+    $errors = [];
+
+    // Validation du titre
+    if (empty($title)) {
+        $errors[] = 'Le titre est obligatoire';
+    } elseif (strlen($title) < 5) {
+        $errors[] = 'Le titre doit contenir au moins 5 caractères';
+    } elseif (strlen($title) > 100) {
+        $errors[] = 'Le titre doit contenir au maximum 100 caractères';
+    }
+
+    // Validation de la description
+    if (empty($description)) {
+        $errors[] = 'La description est obligatoire';
+    } elseif (strlen($description) < 20) {
+        $errors[] = 'La description doit contenir au moins 20 caractères';
+    }
+
+    // Validation du secteur
+    if (empty($sector)) {
+        $errors[] = 'Le secteur est obligatoire';
+    } elseif (strlen($sector) < 3) {
+        $errors[] = 'Le secteur doit contenir au moins 3 caractères';
+    }
+
+    // Validation du lieu
+    if (empty($location)) {
+        $errors[] = 'Le lieu est obligatoire';
+    } elseif (strlen($location) < 3) {
+        $errors[] = 'Le lieu doit contenir au moins 3 caractères';
+    }
+
+    // Validation des dates
+    if (empty($start_date)) {
+        $errors[] = 'La date de début est obligatoire';
+    } elseif (strtotime($start_date) < strtotime(date('Y-m-d'))) {
+        $errors[] = 'La date de début doit être dans le futur';
+    }
+
+    if (empty($end_date)) {
+        $errors[] = 'La date de fin est obligatoire';
+    } elseif (!empty($start_date) && strtotime($end_date) <= strtotime($start_date)) {
+        $errors[] = 'La date de fin doit être postérieure à la date de début';
+    }
+
+    if (empty($deadline)) {
+        $errors[] = 'La date limite de candidature est obligatoire';
+    } elseif (strtotime($deadline) <= strtotime(date('Y-m-d'))) {
+        $errors[] = 'La date limite de candidature doit être dans le futur';
+    }
+
+    // Validation de la branche
+    if (empty($branch_id)) {
+        $errors[] = 'La branche est obligatoire';
+    }
+
+    // Validation de la gratification
+    if ($compensation < 0) {
+        $errors[] = 'La gratification doit être un nombre positif';
+    }
+
+    // S'il y a des erreurs, les afficher
+    if (!empty($errors)) {
+        $error = implode('<br>', $errors);
     } else {
         try {
             // Prepare data for the API

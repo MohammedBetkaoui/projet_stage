@@ -1,0 +1,46 @@
+[2025-05-12 22:26:10] [INFO] Début de la requête de connexion - ::1
+[2025-05-12 22:26:13] [INFO] Début de la requête de connexion - ::1
+[2025-05-12 22:26:13] [ERROR] Réponse: [error] Erreur lors de la connexion: Unknown column 'last_login' in 'field list'
+[2025-05-12 22:26:23] [INFO] Début de la requête de connexion - ::1
+[2025-05-12 22:26:26] [INFO] Début de la requête de connexion - ::1
+[2025-05-12 22:26:26] [ERROR] Réponse: [error] Erreur lors de la connexion: Unknown column 'last_login' in 'field list'
+[2025-05-12 22:27:13] [INFO] Début de la requête de connexion - ::1
+[2025-05-12 22:27:14] [INFO] Début de la requête de connexion - ::1
+[2025-05-12 22:27:19] [INFO] Début de la requête de connexion - ::1
+[2025-05-12 22:27:19] [ERROR] Réponse: [error] Erreur lors de la connexion: Unknown column 'last_login' in 'field list'
+[2025-05-12 22:29:42] [INFO] Début de la requête de connexion - ::1
+[2025-05-12 22:29:46] [INFO] Colonne 'last_login' ajoutée à la table 'users'
+[2025-05-12 22:29:46] [INFO] Initialisation de la base de données terminée
+[2025-05-12 22:29:46] [INFO] Début de la requête de connexion - ::1
+[12-May-2025 22:29:46 Europe/Berlin] PHP Fatal error:  Uncaught Error: mysqli object is already closed in C:\Users\moham\OneDrive\Bureau\my-github\projet_stages\auth\login\login.php:104
+Stack trace:
+#0 C:\Users\moham\OneDrive\Bureau\my-github\projet_stages\auth\login\login.php(104): mysqli->prepare('SELECT * FROM u...')
+#1 {main}
+
+Next Error: mysqli object is already closed in C:\Users\moham\OneDrive\Bureau\my-github\projet_stages\auth\login\login.php:209
+Stack trace:
+#0 C:\Users\moham\OneDrive\Bureau\my-github\projet_stages\auth\login\login.php(209): mysqli->close()
+#1 {main}
+  thrown in C:\Users\moham\OneDrive\Bureau\my-github\projet_stages\auth\login\login.php on line 209
+[2025-05-12 22:30:45] [INFO] Début de la requête de connexion - ::1
+[2025-05-12 22:31:05] [INFO] Début de la requête de connexion - ::1
+[2025-05-12 22:31:12] [INFO] Début de la requête de connexion - ::1
+[2025-05-12 22:31:12] [INFO] Réponse: [success] Connexion réussie.
+[2025-05-13 00:24:23] [INFO] Initialisation de la base de données terminée
+[2025-05-13 00:24:23] [INFO] Début de la requête de connexion - ::1
+[2025-05-13 00:49:04] [INFO] Début de la requête de connexion - ::1
+[2025-05-13 00:49:09] [INFO] Début de la requête de connexion - ::1
+[2025-05-13 00:49:09] [INFO] Réponse: [success] Connexion réussie.
+[2025-05-13 00:49:31] [INFO] Initialisation de la base de données terminée
+[2025-05-13 00:49:31] [INFO] Début de la requête de connexion - ::1
+[2025-05-13 00:49:48] [INFO] Début de la requête de connexion - ::1
+[2025-05-13 00:49:49] [ERROR] Réponse: [error] Identifiants incorrects. Veuillez vérifier votre email/téléphone et mot de passe.
+[2025-05-13 00:49:58] [INFO] Début de la requête de connexion - ::1
+[2025-05-13 00:49:59] [INFO] Réponse: [success] Connexion réussie.
+[2025-05-13 00:50:53] [INFO] Initialisation de la base de données terminée
+[2025-05-13 00:50:53] [INFO] Début de la requête de connexion - ::1
+[2025-05-13 00:51:04] [INFO] Début de la requête de connexion - ::1
+[2025-05-13 00:51:05] [ERROR] Réponse: [error] Identifiants incorrects. Veuillez vérifier votre email/téléphone et mot de passe.
+[2025-05-13 00:52:45] [INFO] Début de la requête de connexion - ::1
+[2025-05-13 00:53:00] [INFO] Début de la requête de connexion - ::1
+[2025-05-13 00:53:00] [INFO] Réponse: [success] Connexion réussie.

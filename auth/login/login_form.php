@@ -9,17 +9,19 @@
 </head>
 <body>
 <div class="container">
-    <form id="loginForm" method="POST">
+    <form id="loginForm" method="POST" novalidate>
         <h1>Connexion</h1>
         <div class="input-group">
-            <label>Email ou Téléphone</label>
-            <input type="text" name="login" required>
+            <label for="login">Email ou Téléphone</label>
+            <input type="text" id="login" name="login" required data-validation="required">
+            <div class="error-message" id="login-error"></div>
         </div>
         <div class="input-group">
-            <label>Mot de passe</label>
-            <input type="password" name="password" required>
+            <label for="password">Mot de passe</label>
+            <input type="password" id="password" name="password" required data-validation="required" data-min-length="6">
+            <div class="error-message" id="password-error"></div>
         </div>
-        <button type="submit">Se connecter</button>
+        <button type="submit" id="submit-btn">Se connecter</button>
         <p id="message"></p>
     </form>
     <p>Pas encore inscrit? <a href="../register/register.php">Inscrivez-vous ici</a></p>

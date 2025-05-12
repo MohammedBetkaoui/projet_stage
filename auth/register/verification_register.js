@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('certificate-file').addEventListener('change', async function(e) {
         const file = e.target.files[0];
         if (!file) return;
-        
+
         // Reset verification result
         document.getElementById('verification-result').style.display = 'none';
         document.getElementById('next-after-verification').style.display = 'none';
@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (cameraBtn) {
         cameraBtn.addEventListener('click', openCamera);
     }
-    
+
     document.getElementById('close-camera').addEventListener('click', closeCamera);
     document.getElementById('capture-photo').addEventListener('click', capturePhoto);
     document.getElementById('verify-certificate').addEventListener('click', verifyCertificateHandler);
@@ -33,21 +33,21 @@ document.addEventListener('DOMContentLoaded', function() {
 async function verifyCertificateHandler() {
     const fileInput = document.getElementById('certificate-file');
     const file = fileInput.files[0];
-    
+
     if (!file) {
         alert('Veuillez sélectionner un fichier ou prendre une photo avant de vérifier.');
         return;
     }
-    
+
     const resultContainer = document.getElementById('verification-result');
     const messageDiv = document.getElementById('verification-message');
-    
+
     resultContainer.style.display = 'block';
     messageDiv.innerHTML = '<div class="processing-message">Vérification en cours...</div>';
-    
+
     try {
         let text = '';
-        
+
         if (file.type === 'application/pdf') {
             text = await extractTextFromPdf(file);
         } else if (file.type.startsWith('image/')) {
@@ -55,42 +55,42 @@ async function verifyCertificateHandler() {
         } else {
             throw new Error('Format de fichier non supporté');
         }
-        
+
         // Store extracted text in hidden field for server-side validation if needed
         document.getElementById('extracted-text').value = text;
-        
+
         const isCertificate = await verifyCertificate(text);
         const isValidYear = checkAcademicYear(text);
-        
+
         if (isCertificate && isValidYear) {
             messageDiv.innerHTML = `
                 <div style="color: green;">
-                    <p>✔ Certificat de scolarité valide!</p>
-                    <p>✔ Année académique valide: ${academicYear}</p>
+                    <p>✔️ Certificat de scolarité valide!</p>
+                    <p>✔️ Année académique valide: ${academicYear}</p>
                 </div>`;
             document.getElementById('certificate_verified').value = '1';
             document.getElementById('next-after-verification').style.display = 'inline-block';
-            
+
             // Stocker en session pour la validation côté serveur
             await fetch('store_verification.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ 
+                body: JSON.stringify({
                     verified: true,
-                    academicYear: academicYear 
+                    academicYear: academicYear
                 }),
             });
         } else if (isCertificate && !isValidYear) {
             messageDiv.innerHTML = `
                 <div style="color: orange;">
-                    <p>✔ Document est un certificat de scolarité</p>
-                    <p>✖ L'année académique n'est pas valide (attendu: ${academicYear})</p>
+                    <p>✔️ Document est un certificat de scolarité</p>
+                    <p>✖️ L'année académique n'est pas valide (attendu: ${academicYear})</p>
                 </div>`;
             document.getElementById('certificate_verified').value = '0';
         } else {
-            messageDiv.innerHTML = '<p style="color: red;">✖ Le document n\'est pas un certificat de scolarité valide.</p>';
+            messageDiv.innerHTML = '<p style="color: red;">✖️ Le document n\'est pas un certificat de scolarité valide.</p>';
             document.getElementById('certificate_verified').value = '0';
         }
     } catch (error) {
@@ -104,13 +104,13 @@ async function openCamera() {
     try {
         // Show camera interface
         document.getElementById('camera-container').classList.remove('hidden');
-        
+
         // Access the device camera
         mediaStream = await navigator.mediaDevices.getUserMedia({
             video: { facingMode: "environment" }, // Use the rear camera if available
             audio: false
         });
-        
+
         // Connect camera stream to video element
         const videoElement = document.getElementById('camera-preview');
         videoElement.srcObject = mediaStream;
@@ -124,7 +124,7 @@ async function openCamera() {
 // Close camera stream
 function closeCamera() {
     document.getElementById('camera-container').classList.add('hidden');
-    
+
     // Stop the media stream
     if (mediaStream) {
         mediaStream.getTracks().forEach(track => track.stop());
@@ -136,29 +136,29 @@ function closeCamera() {
 function capturePhoto() {
     const video = document.getElementById('camera-preview');
     const canvas = document.getElementById('captured-canvas');
-    
+
     // Set canvas dimensions to match video
     canvas.width = video.videoWidth;
     canvas.height = video.videoHeight;
-    
+
     // Draw the current video frame to the canvas
     const ctx = canvas.getContext('2d');
     ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-    
+
     // Convert canvas to blob (file)
     canvas.toBlob(async (blob) => {
         // Create file object from blob
         const capturedImage = new File([blob], "captured-image.jpg", { type: "image/jpeg" });
-        
+
         // Close camera
         closeCamera();
-        
+
         // Set the captured image as the file input value
         const fileInput = document.getElementById('certificate-file');
         const dataTransfer = new DataTransfer();
         dataTransfer.items.add(capturedImage);
         fileInput.files = dataTransfer.files;
-        
+
         // Trigger change event
         const event = new Event('change');
         fileInput.dispatchEvent(event);
@@ -169,13 +169,13 @@ async function extractTextFromPdf(file) {
     const PDF_URL = URL.createObjectURL(file);
     const pdf = await pdfjsLib.getDocument(PDF_URL).promise;
     let allText = '';
-    
+
     for (let i = 1; i <= pdf.numPages; i++) {
         const page = await pdf.getPage(i);
         const content = await page.getTextContent();
         allText += content.items.map(item => item.str).join(' ') + '\n\n';
     }
-    
+
     URL.revokeObjectURL(PDF_URL);
     return allText;
 }
@@ -185,7 +185,7 @@ async function extractTextFromImage(file) {
     const result = await Tesseract.recognize(
         imageUrl,
         'fra', // French language
-        { 
+        {
             logger: m => {
                 if (m.status === 'recognizing text') {
                     const messageDiv = document.getElementById('verification-message');
@@ -196,7 +196,7 @@ async function extractTextFromImage(file) {
             }
         }
     );
-    
+
     URL.revokeObjectURL(imageUrl);
     return result.data.text;
 }
@@ -219,7 +219,7 @@ Look for key indicators like:
 Here's the text:
 ---
 ${text}`;
-    
+
     const response = await fetch(API_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -233,9 +233,9 @@ ${text}`;
             }
         })
     });
-    
+
     const data = await response.json();
     const reply = data?.candidates?.[0]?.content?.parts?.[0]?.text?.toLowerCase() || "";
-    
+
     return reply.includes("yes");
 }
