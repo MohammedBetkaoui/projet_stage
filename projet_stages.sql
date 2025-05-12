@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : lun. 12 mai 2025 à 22:23
+-- Généré le : mar. 13 mai 2025 à 01:04
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -114,6 +114,16 @@ CREATE TABLE `login_logs` (
   `user_agent` text NOT NULL,
   `login_time` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `login_logs`
+--
+
+INSERT INTO `login_logs` (`id`, `user_id`, `ip_address`, `user_agent`, `login_time`) VALUES
+(1, 39, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36 Edg/136.0.0.0', '2025-05-12 20:31:12'),
+(2, 39, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36 Edg/136.0.0.0', '2025-05-12 22:49:09'),
+(3, 17, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36 Edg/136.0.0.0', '2025-05-12 22:49:59'),
+(4, 56, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36 Edg/136.0.0.0', '2025-05-12 22:53:00');
 
 -- --------------------------------------------------------
 
@@ -439,7 +449,9 @@ INSERT INTO `notifications` (`id`, `user_id`, `message`, `is_read`, `created_at`
 (568, 36, 'New offer added: Software Engineer', 0, '2025-02-27 19:50:02'),
 (569, 34, 'New offer added: Software Engineer', 0, '2025-02-27 19:50:03'),
 (570, 36, 'New offer added: Software Engineer', 0, '2025-02-27 19:50:03'),
-(572, 39, 'New offer added: test', 0, '2025-04-20 10:40:40');
+(572, 39, 'New offer added: test', 0, '2025-04-20 10:40:40'),
+(573, 39, 'New offer added: testtest', 0, '2025-05-12 22:58:34'),
+(574, 47, 'New offer added: testtest', 0, '2025-05-12 22:58:34');
 
 -- --------------------------------------------------------
 
@@ -517,30 +529,32 @@ CREATE TABLE `users` (
   `phone` varchar(20) DEFAULT NULL,
   `address` varchar(255) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `id_branch` int(11) DEFAULT NULL
+  `id_branch` int(11) DEFAULT NULL,
+  `last_login` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `password`, `email`, `role`, `full_name`, `phone`, `address`, `created_at`, `id_branch`) VALUES
-(17, 'betkaoui34', '$2y$10$ENsz5sPoVFgr66DUtWhx9O6GRN7h/W6WykJiqmRRQyVnKIkiNfJ0C', 'mohammed.betkaoui@univ-bba.dz', 'admin', 'mohamed.betkaoui', '0545798037', 'bourdj bou arriredj', '2025-02-20 20:13:56', 5),
-(33, 'abbbb', '$2y$10$LyC6PU1e5ncTZ4tAcYqoz.0hmzHpMjXw/Ejnc.SaNw/dZaEY71Apa', 'betkaouiaaaa@gmail.com', 'admin', 'mohamed.betkaoui', '0545798034', 'bourdj bou arriredj', '2025-02-23 12:08:20', NULL),
-(34, 'mmainouf', '$2y$10$Pch.kdE9AR1P.1tGdlACtOt673Ptpcw/tpmR.wjo5h6VkS5l6H4SC', 'maminou@gmail.com', 'admin', 'maminou', '249848', 'bba', '2025-02-25 18:33:45', 18),
-(36, 'btk', '$2y$10$8Od/VqWbFZbJn3KLNgL9p.7WGf4xlMEJfjhT6y1dDii4dCrIMS8vS', 'btkkkkk@gmail.com', 'admin', 'btknom', '594566', 'bba', '2025-02-26 18:01:00', 18),
-(39, 'alilo', '$2y$10$v1Xdn80mWe4V7FezL47aBuIgDPfXZwFt05mMgvrHdRGlJVtfoseDO', 'alilo@gmail.com', 'student', 'Alilo Guichi', '0667895412', 'bourdj bou arriredj', '2025-04-16 12:42:02', 13),
-(40, 'test', '$2y$10$Ekt0kQyPVgS2bvgNYR98u.KCr.Cw2pTWS6ZKz36NoKepxIf3aLd/6', 'univ@email.com', 'company', 'bba univ', '0769885648', 'bourdj bou arriredj', '2025-04-17 15:50:33', NULL),
-(41, 'mohammed.betkaoui', '$2y$10$OhduQpMwA1X0gkPGJtRXNeqwxccwk1BC7Z1BdVSH13C2VUtucW/j6', 'mohammed.betkaoui@gmail.com', 'company', 'mohamed.betkaoui', '0545798034', 'bourdj bou arriredj', '2025-04-20 10:38:23', NULL),
-(43, 'mohammedbba', '$2y$10$TT5ilXrPG4CHhxN9J1uOpulFp2AFOuEN/8IQcT./Btdh3OV6fHTRi', 'test@gmail.com', 'student', 'mohamedbba', '0545798034', 'bourdj bou arriredj', '2025-04-20 11:14:12', 21),
-(44, 'alilo@gmail.com', '$2y$10$6klCbN2/zYfZr1xDz3AZu.wJpnYIqiNzs6jfoLD8DIxOlZrzJNcrG', 'gichiali@gmail.com', 'company', 'mohamed.betkaoui', '0545798034', 'bourdj bou arriredj', '2025-04-20 20:47:35', NULL),
-(45, 'test111', '$2y$10$2iOOFwMS8ZSR0sCY/XmwQefd/zt0sls0oP99uFuyfdtUhLzY9tzm2', 'test111@gmail.com', 'company', 'test111', '0545798034', 'bourdj bou arriredj', '2025-04-20 20:48:14', NULL),
-(47, 'test999', '$2y$10$VjE5e4uTGaXDq1.Iw3oEMOfVPNfyhqeu7umiqmoLiA/pu/gt1HQ9.', 'betkaoui@gmail.com', 'student', 'mohamed.betkaoui', '0545798034', 'bourdj bou arriredj', '2025-04-21 20:20:42', 13),
-(48, 'test999000', '$2y$10$qtt7DGnLB/kSVAKj/Pguk.ZaIkIrsewra/GGlC5j2OMhwOZ7iPMeS', 'gichialisss@gmail.com', 'company', 'mohamed.betkaoui', '0545798034', 'bourdj bou arriredj', '2025-04-21 20:24:15', NULL),
-(49, 'test0', '$2y$10$kGhNQVk86eKL2x2dd5o8V.qkMBAIrW0x2V5XQ8ig4oSa5wbPGTevO', 'alilo00@gmail.com', 'company', 'yahia Bentaleb', '0545798034', 'bourdj bou arriredj', '2025-04-21 20:35:44', NULL),
-(50, 'kamel', '$2y$10$fQFxajpoTlpaDSElQ6I6FeLxct30o/p2A4YGOyWMdmK9bwmo6v.AG', 'kamel@gmail.com', 'student', 'kamel betkaoui', '0545798034', 'bourdj bou arriredj', '2025-04-21 20:54:53', 21),
-(51, 'wwww', '$2y$10$AESVVqNXFdMZ4BJJAQ7Pz.ZDWV6B7RMnFxuL0dKQpRGcMFFkJiQNC', 'w@gmail.com', 'student', 'wwww', '0545798034', 'bourdj bou arriredj', '2025-04-23 07:46:21', 21),
-(55, 'wail', '$2y$10$8II8C/7hRUo.KL5aS3Qzc.7jMPB2MQPyfbBFL9S27H0SHVtIQbev.', 'wail@gmail.com', 'company', 'test34', '0545798034', 'bourdj bou arriredj', '2025-05-12 20:15:44', NULL);
+INSERT INTO `users` (`id`, `username`, `password`, `email`, `role`, `full_name`, `phone`, `address`, `created_at`, `id_branch`, `last_login`) VALUES
+(17, 'betkaoui34', '$2y$10$ENsz5sPoVFgr66DUtWhx9O6GRN7h/W6WykJiqmRRQyVnKIkiNfJ0C', 'mohammed.betkaoui@univ-bba.dz', 'admin', 'mohamed.betkaoui', '0545798037', 'bourdj bou arriredj', '2025-02-20 20:13:56', 5, '2025-05-12 22:49:59'),
+(33, 'abbbb', '$2y$10$LyC6PU1e5ncTZ4tAcYqoz.0hmzHpMjXw/Ejnc.SaNw/dZaEY71Apa', 'betkaouiaaaa@gmail.com', 'admin', 'mohamed.betkaoui', '0545798034', 'bourdj bou arriredj', '2025-02-23 12:08:20', NULL, NULL),
+(34, 'mmainouf', '$2y$10$Pch.kdE9AR1P.1tGdlACtOt673Ptpcw/tpmR.wjo5h6VkS5l6H4SC', 'maminou@gmail.com', 'admin', 'maminou', '249848', 'bba', '2025-02-25 18:33:45', 18, NULL),
+(36, 'btk', '$2y$10$8Od/VqWbFZbJn3KLNgL9p.7WGf4xlMEJfjhT6y1dDii4dCrIMS8vS', 'btkkkkk@gmail.com', 'admin', 'btknom', '594566', 'bba', '2025-02-26 18:01:00', 18, NULL),
+(39, 'alilo', '$2y$10$v1Xdn80mWe4V7FezL47aBuIgDPfXZwFt05mMgvrHdRGlJVtfoseDO', 'alilo@gmail.com', 'student', 'Alilo Guichi', '0667895412', 'bourdj bou arriredj', '2025-04-16 12:42:02', 13, '2025-05-12 22:49:09'),
+(40, 'test', '$2y$10$Ekt0kQyPVgS2bvgNYR98u.KCr.Cw2pTWS6ZKz36NoKepxIf3aLd/6', 'univ@email.com', 'company', 'bba univ', '0769885648', 'bourdj bou arriredj', '2025-04-17 15:50:33', NULL, NULL),
+(41, 'mohammed.betkaoui', '$2y$10$OhduQpMwA1X0gkPGJtRXNeqwxccwk1BC7Z1BdVSH13C2VUtucW/j6', 'mohammed.betkaoui@gmail.com', 'company', 'mohamed.betkaoui', '0545798034', 'bourdj bou arriredj', '2025-04-20 10:38:23', NULL, NULL),
+(43, 'mohammedbba', '$2y$10$TT5ilXrPG4CHhxN9J1uOpulFp2AFOuEN/8IQcT./Btdh3OV6fHTRi', 'test@gmail.com', 'student', 'mohamedbba', '0545798034', 'bourdj bou arriredj', '2025-04-20 11:14:12', 21, NULL),
+(44, 'alilo@gmail.com', '$2y$10$6klCbN2/zYfZr1xDz3AZu.wJpnYIqiNzs6jfoLD8DIxOlZrzJNcrG', 'gichiali@gmail.com', 'company', 'mohamed.betkaoui', '0545798034', 'bourdj bou arriredj', '2025-04-20 20:47:35', NULL, NULL),
+(45, 'test111', '$2y$10$2iOOFwMS8ZSR0sCY/XmwQefd/zt0sls0oP99uFuyfdtUhLzY9tzm2', 'test111@gmail.com', 'company', 'test111', '0545798034', 'bourdj bou arriredj', '2025-04-20 20:48:14', NULL, NULL),
+(47, 'test999', '$2y$10$VjE5e4uTGaXDq1.Iw3oEMOfVPNfyhqeu7umiqmoLiA/pu/gt1HQ9.', 'betkaoui@gmail.com', 'student', 'mohamed.betkaoui', '0545798034', 'bourdj bou arriredj', '2025-04-21 20:20:42', 13, NULL),
+(48, 'test999000', '$2y$10$qtt7DGnLB/kSVAKj/Pguk.ZaIkIrsewra/GGlC5j2OMhwOZ7iPMeS', 'gichialisss@gmail.com', 'company', 'mohamed.betkaoui', '0545798034', 'bourdj bou arriredj', '2025-04-21 20:24:15', NULL, NULL),
+(49, 'test0', '$2y$10$kGhNQVk86eKL2x2dd5o8V.qkMBAIrW0x2V5XQ8ig4oSa5wbPGTevO', 'alilo00@gmail.com', 'company', 'yahia Bentaleb', '0545798034', 'bourdj bou arriredj', '2025-04-21 20:35:44', NULL, NULL),
+(50, 'kamel', '$2y$10$fQFxajpoTlpaDSElQ6I6FeLxct30o/p2A4YGOyWMdmK9bwmo6v.AG', 'kamel@gmail.com', 'student', 'kamel betkaoui', '0545798034', 'bourdj bou arriredj', '2025-04-21 20:54:53', 21, NULL),
+(51, 'wwww', '$2y$10$AESVVqNXFdMZ4BJJAQ7Pz.ZDWV6B7RMnFxuL0dKQpRGcMFFkJiQNC', 'w@gmail.com', 'student', 'wwww', '0545798034', 'bourdj bou arriredj', '2025-04-23 07:46:21', 21, NULL),
+(55, 'wail', '$2y$10$8II8C/7hRUo.KL5aS3Qzc.7jMPB2MQPyfbBFL9S27H0SHVtIQbev.', 'wail@gmail.com', 'company', 'test34', '0545798034', 'bourdj bou arriredj', '2025-05-12 20:15:44', NULL, NULL),
+(56, 'entreprice', '$2y$10$zjyrCqMy.i63APVoaRWi/OJ3y1utF575xLU.OJ1hwF/.rzv4QUnCK', 'entreprice@gmail.com', 'company', 'entreprice', '0667895412', 'bourdj bou arriredj', '2025-05-12 22:52:45', NULL, '2025-05-12 22:53:00');
 
 -- --------------------------------------------------------
 
@@ -683,7 +697,7 @@ ALTER TABLE `branch`
 -- AUTO_INCREMENT pour la table `login_logs`
 --
 ALTER TABLE `login_logs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT pour la table `messages`
@@ -695,13 +709,13 @@ ALTER TABLE `messages`
 -- AUTO_INCREMENT pour la table `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=573;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=575;
 
 --
 -- AUTO_INCREMENT pour la table `offers`
 --
 ALTER TABLE `offers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=166;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=167;
 
 --
 -- AUTO_INCREMENT pour la table `reviews`
@@ -713,7 +727,7 @@ ALTER TABLE `reviews`
 -- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- Contraintes pour les tables déchargées
