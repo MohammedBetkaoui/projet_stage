@@ -1,7 +1,56 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
     RewriteBase /
-    
+
     # Redirection des assets
     RewriteRule ^includes/navbar/(.*)$ /includes/navbar/$1 [L]
+
+    # Bloquer l'accès aux fichiers sensibles
+    RewriteRule ^includes/db/(.*)$ - [F,L]
+    RewriteRule ^includes/security/(.*)$ - [F,L]
+    RewriteRule ^logs/(.*)$ - [F,L]
+    RewriteRule ^\.git/(.*)$ - [F,L]
+    RewriteRule ^\.env$ - [F,L]
+    RewriteRule ^composer\.(json|lock)$ - [F,L]
+    RewriteRule ^package(-lock)?\.json$ - [F,L]
+
+    # Rediriger HTTP vers HTTPS (décommenter en production)
+    # RewriteCond %{HTTPS} off
+    # RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+</IfModule>
+
+# Protection contre les attaques XSS
+<IfModule mod_headers.c>
+    Header set X-XSS-Protection "1; mode=block"
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+
+    # Activer la politique de sécurité du contenu (CSP)
+    # Décommenter et ajuster en production
+    # Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://code.jquery.com; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'"
+</IfModule>
+
+# Désactiver l'affichage du contenu des répertoires
+Options -Indexes
+
+# Limiter les méthodes HTTP autorisées
+<LimitExcept GET POST HEAD>
+    Deny from all
+</LimitExcept>
+
+# Protéger les fichiers sensibles
+<FilesMatch "^(\.htaccess|\.htpasswd|\.git|\.env|composer\.json|package\.json)">
+    Deny from all
+</FilesMatch>
+
+# Définir le type MIME par défaut
+DefaultType text/html
+
+# Définir le jeu de caractères par défaut
+AddDefaultCharset UTF-8
+
+# Compression GZIP
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/x-javascript application/json
 </IfModule>

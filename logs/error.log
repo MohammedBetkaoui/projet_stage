@@ -44,3 +44,29 @@ Stack trace:
 [2025-05-13 00:52:45] [INFO] Début de la requête de connexion - ::1
 [2025-05-13 00:53:00] [INFO] Début de la requête de connexion - ::1
 [2025-05-13 00:53:00] [INFO] Réponse: [success] Connexion réussie.
+[2025-05-13 01:15:59] [INFO] Initialisation de la base de données terminée
+[2025-05-13 01:15:59] [INFO] Début de la requête de connexion - ::1
+[13-May-2025 01:29:48 Europe/Berlin] PHP Fatal error:  Cannot redeclare password_needs_rehash() in C:\Users\moham\OneDrive\Bureau\my-github\projet_stages\includes\security\password_security.php on line 36
+[13-May-2025 01:29:55 Europe/Berlin] PHP Fatal error:  Cannot redeclare password_needs_rehash() in C:\Users\moham\OneDrive\Bureau\my-github\projet_stages\includes\security\password_security.php on line 36
+[13-May-2025 01:30:04 Europe/Berlin] PHP Fatal error:  Cannot redeclare password_needs_rehash() in C:\Users\moham\OneDrive\Bureau\my-github\projet_stages\includes\security\password_security.php on line 36
+[13-May-2025 01:30:35 Europe/Berlin] PHP Fatal error:  Cannot redeclare password_needs_rehash() in C:\Users\moham\OneDrive\Bureau\my-github\projet_stages\includes\security\password_security.php on line 36
+[13-May-2025 01:31:05 Europe/Berlin] PHP Fatal error:  Cannot redeclare password_needs_rehash() in C:\Users\moham\OneDrive\Bureau\my-github\projet_stages\includes\security\password_security.php on line 36
+[13-May-2025 01:32:12 Europe/Berlin] PHP Fatal error:  Cannot redeclare password_needs_rehash() in C:\Users\moham\OneDrive\Bureau\my-github\projet_stages\includes\security\password_security.php on line 36
+[13-May-2025 01:32:24 Europe/Berlin] PHP Fatal error:  Cannot redeclare password_needs_rehash() in C:\Users\moham\OneDrive\Bureau\my-github\projet_stages\includes\security\password_security.php on line 36
+[2025-05-13 01:38:02] [INFO] [::1] [User:Guest] [/auth/login/login.php] Début de la requête de connexion - ::1
+[2025-05-13 01:42:17] [INFO] [::1] [User:Guest] [/auth/login/login.php] Début de la requête de connexion - ::1
+[2025-05-13 01:42:18] [ERROR] [::1] [User:Guest] [/auth/login/login.php] Réponse: [error] Identifiants incorrects. Veuillez vérifier votre email/téléphone et mot de passe.
+[2025-05-13 01:42:32] [INFO] [::1] [User:Guest] [/auth/login/login.php] Début de la requête de connexion - ::1
+[2025-05-13 01:42:32] [INFO] [::1] [User:56] [/auth/login/login.php] Réponse: [success] Connexion réussie.
+[2025-05-13 01:42:38] [INFO] [::1] [User:Guest] [/auth/login/login.php] Début de la requête de connexion - ::1
+[2025-05-13 01:48:54] [INFO] [::1] [User:Guest] [/auth/login/login.php] Début de la requête de connexion - ::1
+[2025-05-13 01:48:57] [INFO] [::1] [User:Guest] [/auth/login/login.php] Début de la requête de connexion - ::1
+[2025-05-13 01:48:57] [INFO] [::1] [User:56] [/auth/login/login.php] Réponse: [success] Connexion réussie.
+[2025-05-13 01:50:59] [INFO] [::1] [User:Guest] [/auth/login/login.php] Début de la requête de connexion - ::1
+[2025-05-13 01:57:44] [INFO] [::1] [User:Guest] [/auth/login/login.php] Début de la requête de connexion - ::1
+[2025-05-13 01:57:52] [INFO] [::1] [User:Guest] [/auth/login/login.php] Début de la requête de connexion - ::1
+[2025-05-13 01:57:52] [INFO] [::1] [User:56] [/auth/login/login.php] Réponse: [success] Connexion réussie.
+[2025-05-13 01:57:58] [INFO] [::1] [User:Guest] [/auth/login/login.php] Début de la requête de connexion - ::1
+[2025-05-13 01:58:59] [INFO] [::1] [User:Guest] [/auth/login/login.php] Début de la requête de connexion - ::1
+[2025-05-13 02:00:30] [INFO] [::1] [User:Guest] [/auth/login/login.php] Début de la requête de connexion - ::1
+[2025-05-13 02:02:40] [INFO] [::1] [User:Guest] [/auth/login/login.php] Début de la requête de connexion - ::1

@@ -4,7 +4,7 @@ require_once '../../includes/db/db.php';
 
 // Redirect if the user is not logged in or is not a company
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'company') {
-    header('Location: ../auth/login/login.php');
+    header('Location: ../../auth/login/login.php');
     exit();
 }
 

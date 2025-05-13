@@ -6,8 +6,17 @@ ini_set('display_startup_errors', 0);
 // Démarrer la capture de sortie pour éviter que des erreurs PHP ne soient envoyées avant les en-têtes
 ob_start();
 
-// Inclure le script d'initialisation
-require_once '../../init.php';
+// Désactiver temporairement les nouvelles fonctionnalités de sécurité pour le débogage
+// Démarrer la session de manière traditionnelle
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+// Inclure le fichier de journalisation des erreurs
+require_once '../../includes/error_logger.php';
+
+// Inclure le fichier de connexion à la base de données
+require_once '../../includes/db/db.php';
 
 // Journaliser le début de la requête
 logError("Début de la requête de connexion - " . $_SERVER['REMOTE_ADDR'], 'INFO');
@@ -199,10 +208,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->close();
     } catch (Exception $e) {
         sendJsonResponse('error', 'Erreur lors de la vérification des identifiants: ' . $e->getMessage());
-    } finally {
-        if (isset($conn) && $conn) {
-            $conn->close();
-        }
     }
 }
 
